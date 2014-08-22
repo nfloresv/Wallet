@@ -9,7 +9,7 @@
     tools:context="com.flores.nico.wallet.LoginActivity">
 
     <TextView
-        android:text="@string/login"
+        android:text="@string/view_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -27,8 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/email"
-            android:id="@+id/textView2"
+            android:text="@string/view_email"
             android:textStyle="bold"
             android:labelFor="@+id/inputEmail"/>
 
@@ -53,8 +52,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/password"
-            android:id="@+id/textView3"
+            android:text="@string/view_password"
             android:textStyle="bold"
             android:labelFor="@+id/inputPassword"/>
 
@@ -70,8 +68,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:id="@+id/button"
+        android:text="@string/view_login"
         android:layout_below="@+id/linearLayout"
         android:layout_alignEnd="@+id/linearLayout"
         android:onClick="login"/>

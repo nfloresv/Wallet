@@ -1,9 +1,7 @@
 package com.flores.nico.wallet;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,23 +9,21 @@ import android.widget.TextView;
 
 
 public class HomeActivity extends Activity {
-    public static final int LOGIN_CODE = 1;
+    public static final int LOGIN_CODE = 0x00001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        String default_value = getString(R.string.no_user_signed_in);
-        String user_signed_in = sharedPreferences.getString(getString(R.string.user_email),
-                default_value);
-        if (user_signed_in.equalsIgnoreCase(default_value)) {
+        Credentials credentials = new Credentials(getApplicationContext());
+        if (credentials.isUserLoggedIn()) {
+            String user_email = credentials.getUserEmail();
+            TextView userEmail = (TextView) findViewById(R.id.TVUserName);
+            userEmail.setText(user_email);
+        } else {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, LOGIN_CODE);
-        } else {
-            TextView userEmail = (TextView) findViewById(R.id.TVUserName);
-            userEmail.setText(user_signed_in);
         }
     }
 
@@ -47,10 +43,19 @@ public class HomeActivity extends Activity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_logout) {
+            Credentials credentials = new Credentials(getApplicationContext());
+            boolean result = credentials.setLogout();
+
+            TextView userEmail = (TextView) findViewById(R.id.TVUserName);
+            userEmail.setText("");
+
+            return result;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == LOGIN_CODE) {
             if (resultCode == RESULT_OK) {
@@ -60,11 +65,8 @@ public class HomeActivity extends Activity {
                 TextView userEmail = (TextView) findViewById(R.id.TVUserName);
                 userEmail.setText(emailText);
 
-                SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(getString(R.string.user_email), emailText);
-                editor.putString(getString(R.string.user_password), passwordText);
-                editor.commit();
+                Credentials credentials = new Credentials(getApplicationContext());
+                credentials.setLoginData(emailText, passwordText);
             }
         }
     }
