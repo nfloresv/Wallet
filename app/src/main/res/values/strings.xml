@@ -15,4 +15,12 @@
     <string name="code_no_user_signed_in">com.flores.nico.NO_USER</string>
     <string name="hello_world">Hello world!</string>
 
+    <string-array name="drawer_section_array">
+        <item>Transaction</item>
+        <item>Last Transaction</item>
+        <item>Dashboard</item>
+    </string-array>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
