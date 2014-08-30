@@ -1,13 +1,12 @@
 package com.flores.nico.wallet;
 
-import android.app.Activity;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 
 /**
@@ -20,6 +19,7 @@ import android.widget.TextView;
  *
  */
 public class TransactionFragment extends Fragment {
+    private Spinner transactionType;
     /*// TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -40,7 +40,7 @@ public class TransactionFragment extends Fragment {
      * @return A new instance of fragment TransactionFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TransactionFragment newInstance(String param1, String param2) {
+    public static TransactionFragment newInstance(/*String param1, String param2*/) {
         TransactionFragment fragment = new TransactionFragment();
         /*Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -64,8 +64,18 @@ public class TransactionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View layout = inflater.inflate(R.layout.fragment_transaction, container, false);
+        transactionType = (Spinner) layout.findViewById(R.id.inputTransactionType);
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.spinner_transaction_type, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        transactionType.setAdapter(adapter);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transaction, container, false);
+        return layout;
     }
 
     /*@Override
@@ -99,10 +109,5 @@ public class TransactionFragment extends Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }*/
-
-    public void changeText(String text) {
-        TextView userName = (TextView) getView().findViewById(R.id.TVUserName);
-        userName.setText(text);
-    }
 
 }

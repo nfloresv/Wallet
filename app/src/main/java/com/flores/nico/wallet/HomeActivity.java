@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 
 public class HomeActivity extends Activity {
@@ -26,7 +25,16 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        Credentials credentials = new Credentials(getApplicationContext());
+
         String[] sectionsList = getResources().getStringArray(R.array.drawer_section_array);
+        if (credentials.isUserLoggedIn()) {
+            String user_email = credentials.getUserEmail();
+            String[] tmp = new String[sectionsList.length + 1];
+            tmp[0] = user_email;
+            System.arraycopy(sectionsList, 0, tmp, 1, sectionsList.length);
+            sectionsList = tmp;
+        }
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, sectionsList));
@@ -38,7 +46,6 @@ public class HomeActivity extends Activity {
                 .add(R.id.container, actualFragment)
                 .commit();
 
-        Credentials credentials = new Credentials(getApplicationContext());
         if (!credentials.isUserLoggedIn()) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, LOGIN_CODE);
@@ -65,9 +72,6 @@ public class HomeActivity extends Activity {
             Credentials credentials = new Credentials(getApplicationContext());
             boolean result = credentials.setLogout();
 
-            TextView userEmail = (TextView) findViewById(R.id.TVUserName);
-            userEmail.setText("");
-
             return result;
         }
         return super.onOptionsItemSelected(item);
@@ -80,8 +84,13 @@ public class HomeActivity extends Activity {
                 String emailText = data.getStringExtra(LoginActivity.USER_EMAIL);
                 String passwordText = data.getStringExtra(LoginActivity.USER_PASSWORD);
 
-                TransactionFragment fragment = (TransactionFragment) actualFragment;
-                fragment.changeText(emailText);
+                String[] sectionsList = getResources().getStringArray(R.array.drawer_section_array);
+                String[] tmp = new String[sectionsList.length + 1];
+                tmp[0] = emailText;
+                System.arraycopy(sectionsList, 0, tmp, 1, sectionsList.length);
+                mDrawerList = (ListView) findViewById(R.id.left_drawer);
+                mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                        android.R.layout.simple_list_item_1, tmp));
 
                 Credentials credentials = new Credentials(getApplicationContext());
                 credentials.setLoginData(emailText, passwordText);
