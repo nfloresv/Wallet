@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--Application Titles-->
+    <!-- Application Titles -->
     <string name="app_name">Wallet</string>
     <string name="title_activity_login">LoginActivity</string>
 
-    <!--Menu Items-->
+    <!-- Menu Items -->
     <string name="action_settings">Settings</string>
     <string name="action_logout">Logout</string>
 
-    <!--Codes-->
+    <!-- Codes -->
     <string name="preferences_credentials">com.flores.nico.CREDENTIALS_PREFERENCES</string>
     <string name="code_user_email">com.flores.nico.USER_EMAIL</string>
     <string name="code_user_password">com.flores.nico.USER_PASSWORD</string>
     <string name="code_no_user_signed_in">com.flores.nico.NO_USER</string>
 
-    <!--Views Text-->
+    <!-- Views Text -->
     <string name="view_login">Login</string>
     <string name="view_email">E-mail</string>
     <string name="view_password">Password</string>
@@ -24,7 +24,7 @@
     <string name="fragment_transaction_date">Date</string>
     <string name="fragment_transaction_description">Description</string>
 
-    <!--Arrays-->
+    <!-- Arrays -->
     <string-array name="drawer_section_array">
         <item>Transaction</item>
         <item>Last Transaction</item>

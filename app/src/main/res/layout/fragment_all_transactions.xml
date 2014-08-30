@@ -1,0 +1,35 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.flores.nico.wallet.AllTransactionsFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Account Balance"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:id="@+id/tvAllTransactionAccountBalance"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:id="@+id/tvAllTransactionsBalance"
+            android:layout_toEndOf="@+id/tvAllTransactionAccountBalance"
+            android:layout_marginLeft="10dp"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lvAllTransactions"
+            android:layout_below="@+id/tvAllTransactionAccountBalance"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

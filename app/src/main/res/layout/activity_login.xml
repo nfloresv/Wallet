@@ -29,14 +29,14 @@
             android:layout_height="wrap_content"
             android:text="@string/view_email"
             android:textStyle="bold"
-            android:labelFor="@+id/inputEmail"/>
+            android:labelFor="@+id/inputLoginEmail"/>
 
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/inputEmail"
+            android:id="@+id/inputLoginEmail"
             android:layout_weight="1"
             android:textStyle="bold"/>
     </LinearLayout>
@@ -54,14 +54,14 @@
             android:layout_height="wrap_content"
             android:text="@string/view_password"
             android:textStyle="bold"
-            android:labelFor="@+id/inputPassword"/>
+            android:labelFor="@+id/inputLoginPassword"/>
 
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/inputPassword"
+            android:id="@+id/inputLoginPassword"
             android:layout_weight="1"/>
     </LinearLayout>
 
