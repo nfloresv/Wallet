@@ -39,7 +39,10 @@ public class HomeActivity extends Activity {
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, sectionsList));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-        actualFragment = new TransactionFragment();
+
+        if (actualFragment == null) {
+            actualFragment = new TransactionFragment();
+        }
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
@@ -71,7 +74,8 @@ public class HomeActivity extends Activity {
         } else if (id == R.id.action_logout) {
             Credentials credentials = new Credentials(getApplicationContext());
             boolean result = credentials.setLogout();
-
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivityForResult(intent, LOGIN_CODE);
             return result;
         }
         return super.onOptionsItemSelected(item);
@@ -101,12 +105,24 @@ public class HomeActivity extends Activity {
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             selectItem(position);
+            mDrawerList.setItemChecked(position, true);
+            DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+            mDrawerLayout.closeDrawer(mDrawerList);
         }
     }
 
     private void selectItem (int position) {
-        mDrawerList.setItemChecked(position, true);
-        DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerLayout.closeDrawer(mDrawerList);
+        if (position == 1) {
+            actualFragment = new TransactionFragment();
+        } else if (position == 2) {
+            actualFragment = new AllTransactionsFragment();
+        } else if (position == 3) {
+            actualFragment = new DashboardFragment();
+        }
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, actualFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

@@ -68,7 +68,7 @@ public class AllTransactionsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_all_transactions, container, false);
         tvAllTransactionsBalance = (TextView) layout.findViewById(R.id
-                .tvAllTransactionAccountBalance);
+                .tvAllTransactionsBalance);
         tvAllTransactionsBalance.setText("$100.500");
 
         lvAllTransactions = (ListView) layout.findViewById(R.id.lvAllTransactions);

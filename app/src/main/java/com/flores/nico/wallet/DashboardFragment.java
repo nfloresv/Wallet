@@ -79,7 +79,7 @@ public class DashboardFragment extends Fragment {
         tvDashboardOutcome = (TextView) layout.findViewById(R.id.tvDashboardOutcome);
         tvDashboardOutcome.setText("$19.500");
 
-        lvDashvoardTransactions = (ListView) layout.findViewById(R.id.lvAllTransactions);
+        lvDashvoardTransactions = (ListView) layout.findViewById(R.id.lvDashboardLastTransactions);
         String[] transactionList = new String[] {
                 "Transaction 1",
                 "Transaction 2",
