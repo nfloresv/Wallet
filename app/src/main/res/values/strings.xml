@@ -23,6 +23,9 @@
     <string name="fragment_transaction_type">Transaction Type</string>
     <string name="fragment_transaction_date">Date</string>
     <string name="fragment_transaction_description">Description</string>
+    <string name="fragment_all_transaction_account_balance">Account Balance</string>
+    <string name="fragment_dashboard_account_income">Account Income</string>
+    <string name="fragment_dashboard_account_outcome">Account Outcome</string>
 
     <!-- Arrays -->
     <string-array name="drawer_section_array">
