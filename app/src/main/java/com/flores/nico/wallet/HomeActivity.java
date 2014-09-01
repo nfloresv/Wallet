@@ -3,6 +3,7 @@ package com.flores.nico.wallet;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -46,7 +47,7 @@ public class HomeActivity extends Activity {
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .add(R.id.container, actualFragment)
+                .replace(R.id.container, actualFragment)
                 .commit();
 
         if (!credentials.isUserLoggedIn()) {
@@ -122,7 +123,8 @@ public class HomeActivity extends Activity {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, actualFragment)
-                .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                //.addToBackStack(null)
                 .commit();
     }
 }
