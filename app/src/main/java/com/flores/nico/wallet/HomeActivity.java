@@ -45,7 +45,7 @@ public class HomeActivity extends Activity {
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         if (actualFragment == null) {
-            actualFragment = new TransactionFragment();
+            actualFragment = new MovementFragment();
         }
 
         FragmentManager fragmentManager = getFragmentManager();
@@ -57,6 +57,9 @@ public class HomeActivity extends Activity {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, LOGIN_CODE);
         }
+
+        /*SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String firstLaunch = sharedPref.getString()*/
     }
 
 
@@ -115,9 +118,9 @@ public class HomeActivity extends Activity {
 
     private void selectItem (int position) {
         if (position == 1) {
-            actualFragment = new TransactionFragment();
+            actualFragment = new MovementFragment();
         } else if (position == 2) {
-            actualFragment = new AllTransactionsFragment();
+            actualFragment = new AllMovementsFragment();
         } else if (position == 3) {
             actualFragment = new DashboardFragment();
         }

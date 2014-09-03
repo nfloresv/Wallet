@@ -13,13 +13,13 @@ import android.widget.TextView;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AllTransactionsFragment.OnFragmentInteractionListener} interface
+ * {@link AllMovementsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link AllTransactionsFragment#newInstance} factory method to
+ * Use the {@link AllMovementsFragment#newInstance} factory method to
  * create an instance of this fragment.
  *
  */
-public class AllTransactionsFragment extends Fragment {
+public class AllMovementsFragment extends Fragment {
     private TextView tvAllTransactionsBalance;
     private ListView lvAllTransactions;
     /*// TODO: Rename parameter arguments, choose names that match
@@ -39,18 +39,18 @@ public class AllTransactionsFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AllTransactionsFragment.
+     * @return A new instance of fragment AllMovementsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AllTransactionsFragment newInstance(/*String param1, String param2*/) {
-        AllTransactionsFragment fragment = new AllTransactionsFragment();
+    public static AllMovementsFragment newInstance(/*String param1, String param2*/) {
+        AllMovementsFragment fragment = new AllMovementsFragment();
         /*Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(a;rgs)*/
         return fragment;
     }
-    /*public AllTransactionsFragment() {
+    /*public AllMovementsFragment() {
         // Required empty public constructor
     }*/
 
@@ -66,19 +66,19 @@ public class AllTransactionsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_all_transactions, container, false);
+        View layout = inflater.inflate(R.layout.fragment_all_movements, container, false);
         tvAllTransactionsBalance = (TextView) layout.findViewById(R.id
                 .tvAllTransactionsBalance);
         tvAllTransactionsBalance.setText("$100.500");
 
         lvAllTransactions = (ListView) layout.findViewById(R.id.lvAllTransactions);
         String[] transactionList = new String[] {
-                "Transaction 1",
-                "Transaction 2",
-                "Transaction 3",
-                "Transaction 4",
-                "Transaction 5",
-                "Transaction 6"
+                "Movement 1",
+                "Movement 2",
+                "Movement 3",
+                "Movement 4",
+                "Movement 5",
+                "Movement 6"
         };
         lvAllTransactions.setAdapter(new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, transactionList));

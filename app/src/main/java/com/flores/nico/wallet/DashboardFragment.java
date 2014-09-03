@@ -1,7 +1,5 @@
 package com.flores.nico.wallet;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -79,12 +77,12 @@ public class DashboardFragment extends Fragment {
         tvDashboardOutcome = (TextView) layout.findViewById(R.id.tvDashboardOutcome);
         tvDashboardOutcome.setText("$19.500");
 
-        lvDashvoardTransactions = (ListView) layout.findViewById(R.id.lvDashboardLastTransactions);
+        lvDashvoardTransactions = (ListView) layout.findViewById(R.id.lvDashboardLastMovements);
         String[] transactionList = new String[] {
-                "Transaction 1",
-                "Transaction 2",
-                "Transaction 3",
-                "Transaction 4"
+                "Movement 1",
+                "Movement 2",
+                "Movement 3",
+                "Movement 4"
         };
         lvDashvoardTransactions.setAdapter(new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, transactionList));

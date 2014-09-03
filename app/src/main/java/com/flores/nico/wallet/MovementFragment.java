@@ -8,18 +8,23 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.flores.nico.database.Category;
+
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TransactionFragment.OnFragmentInteractionListener} interface
+ * {@link MovementFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link TransactionFragment#newInstance} factory method to
+ * Use the {@link MovementFragment#newInstance} factory method to
  * create an instance of this fragment.
  *
  */
-public class TransactionFragment extends Fragment {
-    private Spinner transactionType;
+public class MovementFragment extends Fragment {
+    private ArrayAdapter<Category> movementCategoryArray;
+    private ArrayAdapter<CharSequence> movementTypeArray;
     /*// TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -37,24 +42,35 @@ public class TransactionFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TransactionFragment.
+     * @return A new instance of fragment MovementFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TransactionFragment newInstance(/*String param1, String param2*/) {
-        TransactionFragment fragment = new TransactionFragment();
+    public static MovementFragment newInstance(/*String param1, String param2*/) {
+        MovementFragment fragment = new MovementFragment();
         /*Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);*/
         return fragment;
     }
-    /*public TransactionFragment() {
+
+    /*public MovementFragment() {
         // Required empty public constructor
     }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        movementTypeArray = ArrayAdapter.createFromResource(getActivity(),
+                R.array.movement_fragment_spinner_movement_type, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        movementTypeArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        List<Category> movementCategories = Category.listAll(Category.class);
+        movementCategoryArray = new ArrayAdapter<Category>(getActivity(),
+                android.R.layout.simple_spinner_item, movementCategories);
+        movementCategoryArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         /*if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -64,17 +80,15 @@ public class TransactionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_transaction, container, false);
-        transactionType = (Spinner) layout.findViewById(R.id.inputTransactionType);
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.transaction_fragment_spinner_transaction_type, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        transactionType.setAdapter(adapter);
         // Inflate the layout for this fragment
+        View layout = inflater.inflate(R.layout.fragment_movement, container, false);
+
+        Spinner movementType = (Spinner) layout.findViewById(R.id.inputMovementType);
+        // Apply the adapter to the spinner
+        movementType.setAdapter(movementTypeArray);
+
+        Spinner movementCategory = (Spinner) layout.findViewById(R.id.inputMovementCategory);
+        movementCategory.setAdapter(movementCategoryArray);
         return layout;
     }
 

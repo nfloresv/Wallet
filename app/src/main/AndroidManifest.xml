@@ -11,7 +11,7 @@
         <meta-data android:name="DATABASE" android:value="wallet.db" />
         <meta-data android:name="VERSION" android:value="1" />
         <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.flores.nico.wallet" />
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.flores.nico" />
 
         <activity
             android:name=".HomeActivity"

@@ -1,77 +1,72 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.flores.nico.wallet.DashboardFragment">
+    android:layout_height="wrap_content"
+    tools:context="com.flores.nico.wallet.DashboardFragment"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:columnCount="3"
+        android:rowCount="3">
 
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:columnCount="3"
-            android:rowCount="3">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all_movements_fragment_tv_account_balance"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_column="0"
+            android:layout_row="0"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:textSize="20sp"
+            android:id="@+id/tvDashboardBalance"
+            android:layout_column="2"
+            android:layout_row="0"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/all_transaction_fragment_tv_account_balance"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_column="0"
-                android:layout_row="0"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:textSize="20sp"
-                android:id="@+id/tvDashboardBalance"
-                android:layout_column="2"
-                android:layout_row="0"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dashboard_fragment_tv_account_income"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_column="0"
+            android:layout_row="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:textSize="15sp"
+            android:id="@+id/tvDashboardIncome"
+            android:layout_column="2"
+            android:layout_row="1"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dashboard_fragment_tv_account_income"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:layout_column="0"
-                android:layout_row="1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:textSize="15sp"
-                android:id="@+id/tvDashboardIncome"
-                android:layout_column="2"
-                android:layout_row="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dashboard_fragment_tv_account_outcome"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_column="0"
+            android:layout_row="2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:textSize="15sp"
+            android:id="@+id/tvDashboardOutcome"
+            android:layout_column="2"
+            android:layout_row="2"/>
+    </GridLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dashboard_fragment_tv_account_outcome"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:layout_column="0"
-                android:layout_row="2"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:textSize="15sp"
-                android:id="@+id/tvDashboardOutcome"
-                android:layout_column="2"
-                android:layout_row="2"/>
-        </GridLayout>
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:id="@+id/lvDashboardLastTransactions"
-            android:layout_weight="1"/>
-    </LinearLayout>
-
-</FrameLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/lvDashboardLastMovements"
+        android:layout_weight="1"/>
+</LinearLayout>

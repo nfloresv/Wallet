@@ -19,22 +19,23 @@
     <string name="login_activity_tv_login">Login</string>
     <string name="login_activity_tv_email">E-mail</string>
     <string name="login_activity_tv_password">Password</string>
-    <string name="transaction_fragment_tv_amount">Transaction Amount</string>
-    <string name="transaction_fragment_tv_type">Transaction Type</string>
-    <string name="transaction_fragment_tv_date">Date</string>
-    <string name="transaction_fragment_tv_description">Description</string>
-    <string name="transaction_fragment_btn_save">Save</string>
-    <string name="all_transaction_fragment_tv_account_balance">Account Balance</string>
+    <string name="movement_fragment_tv_amount">Transaction Amount</string>
+    <string name="movement_fragment_tv_type">Transaction Type</string>
+    <string name="movement_fragment_tv_category">Transaction Category</string>
+    <string name="movement_fragment_tv_date">Date</string>
+    <string name="movement_fragment_tv_description">Description</string>
+    <string name="movement_fragment_btn_save">Save</string>
+    <string name="all_movements_fragment_tv_account_balance">Account Balance</string>
     <string name="dashboard_fragment_tv_account_income">Account Income</string>
     <string name="dashboard_fragment_tv_account_outcome">Account Outcome</string>
 
     <!-- Arrays -->
     <string-array name="drawer_section_array">
-        <item>Transaction</item>
-        <item>Last Transaction</item>
+        <item>Movement</item>
+        <item>Last Movements</item>
         <item>Dashboard</item>
     </string-array>
-    <string-array name="transaction_fragment_spinner_transaction_type">
+    <string-array name="movement_fragment_spinner_movement_type">
         <item>Income</item>
         <item>Outcome</item>
     </string-array>

@@ -1,0 +1,30 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.flores.nico.wallet.AllMovementsFragment"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/all_movements_fragment_tv_account_balance"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:id="@+id/tvAllMovementsAccountBalance"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/tvAllTransactionsBalance"
+        android:layout_toEndOf="@+id/tvAllMovementsAccountBalance"
+        android:layout_marginLeft="10dp"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvAllTransactions"
+        android:layout_below="@+id/tvAllMovementsAccountBalance"/>
+
+</RelativeLayout>
