@@ -16,16 +16,17 @@
     <string name="code_no_user_signed_in">com.flores.nico.NO_USER</string>
 
     <!-- Views Text -->
-    <string name="view_login">Login</string>
-    <string name="view_email">E-mail</string>
-    <string name="view_password">Password</string>
-    <string name="fragment_transaction_amount">Transaction Amount</string>
-    <string name="fragment_transaction_type">Transaction Type</string>
-    <string name="fragment_transaction_date">Date</string>
-    <string name="fragment_transaction_description">Description</string>
-    <string name="fragment_all_transaction_account_balance">Account Balance</string>
-    <string name="fragment_dashboard_account_income">Account Income</string>
-    <string name="fragment_dashboard_account_outcome">Account Outcome</string>
+    <string name="login_activity_tv_login">Login</string>
+    <string name="login_activity_tv_email">E-mail</string>
+    <string name="login_activity_tv_password">Password</string>
+    <string name="transaction_fragment_tv_amount">Transaction Amount</string>
+    <string name="transaction_fragment_tv_type">Transaction Type</string>
+    <string name="transaction_fragment_tv_date">Date</string>
+    <string name="transaction_fragment_tv_description">Description</string>
+    <string name="transaction_fragment_btn_save">Save</string>
+    <string name="all_transaction_fragment_tv_account_balance">Account Balance</string>
+    <string name="dashboard_fragment_tv_account_income">Account Income</string>
+    <string name="dashboard_fragment_tv_account_outcome">Account Outcome</string>
 
     <!-- Arrays -->
     <string-array name="drawer_section_array">
@@ -33,7 +34,7 @@
         <item>Last Transaction</item>
         <item>Dashboard</item>
     </string-array>
-    <string-array name="spinner_transaction_type">
+    <string-array name="transaction_fragment_spinner_transaction_type">
         <item>Income</item>
         <item>Outcome</item>
     </string-array>

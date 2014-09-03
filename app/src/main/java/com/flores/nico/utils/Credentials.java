@@ -1,7 +1,9 @@
-package com.flores.nico.wallet;
+package com.flores.nico.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.flores.nico.wallet.R;
 
 /**
  * Created by nicoflores on 21-08-14.

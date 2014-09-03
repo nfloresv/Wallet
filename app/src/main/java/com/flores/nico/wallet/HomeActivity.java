@@ -14,10 +14,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.flores.nico.utils.Credentials;
+
 
 public class HomeActivity extends Activity {
     private Fragment actualFragment;
     private ListView mDrawerList;
+    private Credentials credentials;
 
     public static final int LOGIN_CODE = 0x00001;
 
@@ -26,7 +29,7 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Credentials credentials = new Credentials(getApplicationContext());
+        credentials = new Credentials(getApplicationContext());
 
         String[] sectionsList = getResources().getStringArray(R.array.drawer_section_array);
         if (credentials.isUserLoggedIn()) {
@@ -73,7 +76,6 @@ public class HomeActivity extends Activity {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_logout) {
-            Credentials credentials = new Credentials(getApplicationContext());
             boolean result = credentials.setLogout();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, LOGIN_CODE);
@@ -97,7 +99,6 @@ public class HomeActivity extends Activity {
                 mDrawerList.setAdapter(new ArrayAdapter<String>(this,
                         android.R.layout.simple_list_item_1, tmp));
 
-                Credentials credentials = new Credentials(getApplicationContext());
                 credentials.setLoginData(emailText, passwordText);
             }
         }

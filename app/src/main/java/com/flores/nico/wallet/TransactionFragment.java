@@ -69,7 +69,7 @@ public class TransactionFragment extends Fragment {
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.spinner_transaction_type, android.R.layout.simple_spinner_item);
+                R.array.transaction_fragment_spinner_transaction_type, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
