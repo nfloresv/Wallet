@@ -1,15 +1,27 @@
 package com.flores.nico.wallet;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.flores.nico.database.Category;
+import com.flores.nico.database.Movement;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -89,6 +101,14 @@ public class MovementFragment extends Fragment {
 
         Spinner movementCategory = (Spinner) layout.findViewById(R.id.inputMovementCategory);
         movementCategory.setAdapter(movementCategoryArray);
+
+        Button saveButton = (Button) layout.findViewById(R.id.btnSave);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+                saveMovement(view);
+            }
+        });
         return layout;
     }
 
@@ -124,4 +144,40 @@ public class MovementFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }*/
 
+    public void saveMovement(View view) {
+        createMovement();
+
+        resetView();
+
+        Context context = getActivity().getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, "Test", duration);
+        toast.show();
+    }
+
+    private void createMovement() {
+        EditText movementAmount = (EditText) getActivity().findViewById(R.id.inputMovementAmount);
+        Spinner movementCategory = (Spinner) getActivity().findViewById(R.id.inputMovementCategory);
+        Spinner movementType = (Spinner) getActivity().findViewById(R.id.inputMovementType);
+        DatePicker movementDate = (DatePicker) getActivity().findViewById(R.id.inputMovementDatePicker);
+        EditText movementDescription = (EditText) getActivity().findViewById(R.id.inputMovementDescription);
+
+        double amount = Double.parseDouble(movementAmount.getText().toString());
+        Category category = Category.find(Category.class, "name = ?",
+                movementCategory.getSelectedItem().toString()).get(0);
+        boolean type = movementType.getSelectedItem().toString() == getResources().getStringArray
+                (R.array.movement_fragment_spinner_movement_type)[0];
+        Date date = new Date(movementDate.getCalendarView().getDate());
+        String description = movementDescription.getText().toString();
+
+        Movement movement = new Movement(amount, category, type, date, description);
+        movement.save();
+    }
+
+    private void resetView() {
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, new MovementFragment())
+                .commit();
+    }
 }

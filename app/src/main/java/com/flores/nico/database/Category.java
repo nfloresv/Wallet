@@ -2,8 +2,6 @@ package com.flores.nico.database;
 
 import com.orm.SugarRecord;
 
-import java.util.Date;
-
 /**
  * Created by nicoflores on 03-09-14.
  */
@@ -35,4 +33,8 @@ public class Category extends SugarRecord<Category> {
         this.description = description;
     }
 
+    @Override
+    public String toString () {
+        return name;
+    }
 }

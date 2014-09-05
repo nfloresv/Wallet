@@ -10,18 +10,48 @@
     <string name="action_logout">Logout</string>
 
     <!-- Codes -->
-    <string name="preferences_credentials">com.flores.nico.CREDENTIALS_PREFERENCES</string>
-    <string name="code_user_email">com.flores.nico.USER_EMAIL</string>
-    <string name="code_user_password">com.flores.nico.USER_PASSWORD</string>
-    <string name="code_no_user_signed_in">com.flores.nico.NO_USER</string>
+    <string name="preferences_credentials">com.flores.nico.utils.CREDENTIALS_PREFERENCES</string>
+    <string name="code_user_email">com.flores.nico.wallet.USER_EMAIL</string>
+    <string name="code_user_password">com.flores.nico.wallet.USER_PASSWORD</string>
+    <string name="code_no_user_signed_in">com.flores.nico.wallet.NO_USER</string>
+    <string name="code_no_categories_present">com.flores.nico.utils.NO_CATEGORIES</string>
+    <string name="code_categories_present">com.flores.nico.utils.CATEGORIES</string>
+
+    <!--Default Categories-->
+    <string name="category_food">Food</string>
+    <string name="category_food_description">Category about the money spent/won in food</string>
+    <string name="category_entertainment">Entertainment</string>
+    <string name="category_entertainment_description">Category about the money spent/won
+        in entertainment</string>
+    <string name="category_salary">Salary</string>
+    <string name="category_salary_description">Category about the money won as salary</string>
+    <string name="category_transport">Transport</string>
+    <string name="category_transport_description">Category about the money spent/won in
+        transport</string>
+    <string name="category_service">Service</string>
+    <string name="category_service_description">Category about the money spent/won in
+        services</string>
+    <string name="category_rent">Rent</string>
+    <string name="category_rent_description">Category about the money spent/won with rent</string>
+    <string name="category_tax">Tax</string>
+    <string name="category_tax_description">Category about the money spent/won in taxes</string>
+    <string name="category_clothes">Clothes</string>
+    <string name="category_clothes_description">Category about the money spent/won in
+        clothes</string>
+    <string name="category_education">Education</string>
+    <string name="category_education_description">Category about the money spent/won in
+        education</string>
+    <string name="category_other">Other</string>
+    <string name="category_other_description">Any other thing that is not covered with the
+        others categories</string>
 
     <!-- Views Text -->
     <string name="login_activity_tv_login">Login</string>
     <string name="login_activity_tv_email">E-mail</string>
     <string name="login_activity_tv_password">Password</string>
-    <string name="movement_fragment_tv_amount">Transaction Amount</string>
-    <string name="movement_fragment_tv_type">Transaction Type</string>
-    <string name="movement_fragment_tv_category">Transaction Category</string>
+    <string name="movement_fragment_tv_amount">Movement Amount</string>
+    <string name="movement_fragment_tv_type">Movement Type</string>
+    <string name="movement_fragment_tv_category">Movement Category</string>
     <string name="movement_fragment_tv_date">Date</string>
     <string name="movement_fragment_tv_description">Description</string>
     <string name="movement_fragment_btn_save">Save</string>
@@ -34,6 +64,7 @@
         <item>Movement</item>
         <item>Last Movements</item>
         <item>Dashboard</item>
+        <item>Categories</item>
     </string-array>
     <string-array name="movement_fragment_spinner_movement_type">
         <item>Income</item>

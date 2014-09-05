@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.flores.nico.utils.Credentials;
+import com.flores.nico.utils.Initializer;
 
 
 public class HomeActivity extends Activity {
@@ -54,14 +56,16 @@ public class HomeActivity extends Activity {
                 .commit();
 
         if (!credentials.isUserLoggedIn()) {
+            //Only pre load the database if the user is not logged in
+            Initializer initializer = new Initializer(getApplicationContext(),
+                    getPreferences(Context.MODE_PRIVATE));
+            initializer.load_categories();
+
+            //Start user login
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, LOGIN_CODE);
         }
-
-        /*SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        String firstLaunch = sharedPref.getString()*/
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -128,7 +132,6 @@ public class HomeActivity extends Activity {
         fragmentManager.beginTransaction()
                 .replace(R.id.container, actualFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                //.addToBackStack(null)
                 .commit();
     }
 }
