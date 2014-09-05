@@ -11,17 +11,17 @@ public class Movement extends SugarRecord<Movement> {
     private double amount;
     private Category category;
     private boolean income;
-    private Date transaction_date;
+    private Date movement_date;
     private String description;
 
     public Movement () {
     }
 
-    public Movement (double amount, Category category, boolean income, Date transaction_date, String description) {
+    public Movement (double amount, Category category, boolean income, Date movement_date, String description) {
         this.amount = amount;
         this.category = category;
         this.income = income;
-        this.transaction_date = transaction_date;
+        this.movement_date = movement_date;
         this.description = description;
     }
 
@@ -49,12 +49,12 @@ public class Movement extends SugarRecord<Movement> {
         this.income = income;
     }
 
-    public Date getTransaction_date () {
-        return transaction_date;
+    public Date getMovement_date () {
+        return movement_date;
     }
 
-    public void setTransaction_date (Date transaction_date) {
-        this.transaction_date = transaction_date;
+    public void setMovement_date (Date movement_date) {
+        this.movement_date = movement_date;
     }
 
     public String getDescription () {
@@ -65,4 +65,12 @@ public class Movement extends SugarRecord<Movement> {
         this.description = description;
     }
 
+    @Override
+    public String toString () {
+        return "Movement{" +
+                "amount=" + amount +
+                ", income=" + income +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

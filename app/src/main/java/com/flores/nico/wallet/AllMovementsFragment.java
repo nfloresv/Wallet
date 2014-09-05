@@ -1,13 +1,17 @@
 package com.flores.nico.wallet;
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.flores.nico.adapters.movement.MovementAdapter;
+import com.flores.nico.database.Movement;
+
+import java.util.List;
 
 
 /**
@@ -20,8 +24,8 @@ import android.widget.TextView;
  *
  */
 public class AllMovementsFragment extends Fragment {
-    private TextView tvAllTransactionsBalance;
-    private ListView lvAllTransactions;
+    private List<Movement> allMovements;
+    private double allMovementsBalance;
     /*// TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -57,6 +61,15 @@ public class AllMovementsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        allMovements = Movement.listAll(Movement.class);
+        allMovementsBalance = 0;
+        for (Movement movement : allMovements) {
+            if (movement.isIncome()) {
+                allMovementsBalance += movement.getAmount();
+            } else {
+                allMovementsBalance -= movement.getAmount();
+            }
+        }
         /*if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -66,23 +79,17 @@ public class AllMovementsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_all_movements, container, false);
-        tvAllTransactionsBalance = (TextView) layout.findViewById(R.id
-                .tvAllTransactionsBalance);
-        tvAllTransactionsBalance.setText("$100.500");
-
-        lvAllTransactions = (ListView) layout.findViewById(R.id.lvAllTransactions);
-        String[] transactionList = new String[] {
-                "Movement 1",
-                "Movement 2",
-                "Movement 3",
-                "Movement 4",
-                "Movement 5",
-                "Movement 6"
-        };
-        lvAllTransactions.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, transactionList));
         // Inflate the layout for this fragment
+        View layout = inflater.inflate(R.layout.fragment_all_movements, container, false);
+
+        TextView tvAllMovementsBalance = (TextView) layout.findViewById(R.id
+                .tvAllTransactionsBalance);
+        tvAllMovementsBalance.setText("$" + Double.toString(allMovementsBalance));
+
+        ListView lvAllMovements = (ListView) layout.findViewById(R.id.lvAllTransactions);
+        MovementAdapter adapter = new MovementAdapter(getActivity().getApplicationContext(),
+                R.layout.movement_layout, allMovements);
+        lvAllMovements.setAdapter(adapter);
         return layout;
     }
 

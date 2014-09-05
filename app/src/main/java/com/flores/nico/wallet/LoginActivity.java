@@ -44,7 +44,6 @@ public class LoginActivity extends Activity {
     public void login(View view) {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
-        CharSequence message = "";
 
         EditText emailField = (EditText) findViewById(R.id.inputLoginEmail);
         CharSequence emailText = emailField.getText().toString();
@@ -55,7 +54,7 @@ public class LoginActivity extends Activity {
         boolean validEmail = isEmailValid(emailText);
 
         if (validEmail && !passwordText.isEmpty()) {
-            message = "Login successfully";
+            String message = getString(R.string.toast_login_activity_login_successfully);
             Toast toast = Toast.makeText(context, message, duration);
             toast.show();
 
@@ -67,12 +66,12 @@ public class LoginActivity extends Activity {
             finish();
         }
         else if (!validEmail){
-            message = "Invalid E-mail";
+            String message = getString(R.string.toast_login_activity_invalid_email);
             Toast toast = Toast.makeText(context, message, duration);
             toast.show();
         }
         else {
-            message = "Invalid Password";
+            String message = getString(R.string.toast_login_activity_invalid_password);
             Toast toast = Toast.makeText(context, message, duration);
             toast.show();
         }

@@ -3,7 +3,7 @@
 
     <!-- Application Titles -->
     <string name="app_name">Wallet</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">Login</string>
 
     <!-- Menu Items -->
     <string name="action_settings">Settings</string>
@@ -16,6 +16,12 @@
     <string name="code_no_user_signed_in">com.flores.nico.wallet.NO_USER</string>
     <string name="code_no_categories_present">com.flores.nico.utils.NO_CATEGORIES</string>
     <string name="code_categories_present">com.flores.nico.utils.CATEGORIES</string>
+
+    <!--Toast-->
+    <string name="toast_login_activity_login_successfully">Login successfully</string>
+    <string name="toast_login_activity_invalid_email">Invalid E-mail</string>
+    <string name="toast_login_activity_invalid_password">Invalid Password</string>
+    <string name="toast_movement_fragment_movement_saved">Movement correctly saved</string>
 
     <!--Default Categories-->
     <string name="category_food">Food</string>

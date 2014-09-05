@@ -2,11 +2,8 @@ package com.flores.nico.wallet;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +17,6 @@ import android.widget.Toast;
 import com.flores.nico.database.Category;
 import com.flores.nico.database.Movement;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -151,7 +147,8 @@ public class MovementFragment extends Fragment {
 
         Context context = getActivity().getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, "Test", duration);
+        String message = getString(R.string.toast_movement_fragment_movement_saved);
+        Toast toast = Toast.makeText(context, message, duration);
         toast.show();
     }
 
@@ -165,8 +162,10 @@ public class MovementFragment extends Fragment {
         double amount = Double.parseDouble(movementAmount.getText().toString());
         Category category = Category.find(Category.class, "name = ?",
                 movementCategory.getSelectedItem().toString()).get(0);
-        boolean type = movementType.getSelectedItem().toString() == getResources().getStringArray
-                (R.array.movement_fragment_spinner_movement_type)[0];
+        String selected_type = movementType.getSelectedItem().toString();
+        String array_type = getResources().getStringArray(R.array
+                .movement_fragment_spinner_movement_type)[0];
+        boolean type = array_type.equalsIgnoreCase(selected_type);
         Date date = new Date(movementDate.getCalendarView().getDate());
         String description = movementDescription.getText().toString();
 
