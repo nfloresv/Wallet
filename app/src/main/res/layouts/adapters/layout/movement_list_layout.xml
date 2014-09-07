@@ -3,33 +3,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-    android:padding="10dp">
+                android:padding="10dp">
     <TextView
-        android:id="@+id/movementLayoutDate"
+        android:id="@+id/movementListLayoutDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="20sp"/>
     <TextView
-        android:id="@+id/movementLayoutAmount"
+        android:id="@+id/movementListLayoutAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_alignParentRight="true"/>
     <TextView
-        android:id="@+id/movementLayoutCategory"
+        android:id="@+id/movementListLayoutCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/movementLayoutDate"
+        android:layout_below="@+id/movementListLayoutDate"
         android:textSize="18sp"/>
 
     <TextView
-        android:id="@+id/movementLayoutDescription"
+        android:id="@+id/movementListLayoutDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_below="@+id/movementLayoutCategory"
+        android:layout_below="@+id/movementListLayoutCategory"
         android:textAlignment="textEnd"
         android:singleLine="true"/>
 

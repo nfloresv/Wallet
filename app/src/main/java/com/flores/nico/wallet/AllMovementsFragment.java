@@ -92,7 +92,7 @@ public class AllMovementsFragment extends Fragment {
 
         ListView lvAllMovements = (ListView) layout.findViewById(R.id.lvAllTransactions);
         MovementListAdapter adapter = new MovementListAdapter(getActivity().getApplicationContext(),
-                R.layout.movement_layout, allMovements);
+                R.layout.movement_list_layout, allMovements);
         lvAllMovements.setAdapter(adapter);
         return layout;
     }

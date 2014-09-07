@@ -38,11 +38,11 @@ public class MovementListAdapter extends ArrayAdapter<Movement> {
                     (Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layoutResource, parent, false);
 
-            TextView movementDate = (TextView) row.findViewById(R.id.movementLayoutDate);
-            TextView movementAmount = (TextView) row.findViewById(R.id.movementLayoutAmount);
-            TextView movementCategory = (TextView) row.findViewById(R.id.movementLayoutCategory);
+            TextView movementDate = (TextView) row.findViewById(R.id.movementListLayoutDate);
+            TextView movementAmount = (TextView) row.findViewById(R.id.movementListLayoutAmount);
+            TextView movementCategory = (TextView) row.findViewById(R.id.movementListLayoutCategory);
             TextView movementDescription = (TextView) row.findViewById(R.id
-                    .movementLayoutDescription);
+                    .movementListLayoutDescription);
 
             holder = new MovementHolder(movementDate, movementAmount, movementCategory, movementDescription);
             row.setTag(holder);
