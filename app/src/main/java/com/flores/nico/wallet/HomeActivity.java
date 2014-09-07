@@ -127,6 +127,8 @@ public class HomeActivity extends Activity {
             actualFragment = new AllMovementsFragment();
         } else if (position == 3) {
             actualFragment = new DashboardFragment();
+        } else if (position == 4) {
+            actualFragment = new CategoryFragment();
         }
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()

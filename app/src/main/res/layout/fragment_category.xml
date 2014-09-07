@@ -11,7 +11,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:labelFor="@+id/categoryFragmentInputName"
-        android:text="Category Name" />
+        android:text="@string/category_fragment_tv_name" />
     <EditText
         android:id="@+id/categoryFragmentInputName"
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:textStyle="bold"
         android:labelFor="@+id/categoryFragmentInputDescription"
         android:layout_marginTop="10dp"
-        android:text="Category Description"/>
+        android:text="@string/category_fragment_tv_description"/>
     <EditText
         android:id="@+id/categoryFragmentInputDescription"
         android:layout_width="match_parent"

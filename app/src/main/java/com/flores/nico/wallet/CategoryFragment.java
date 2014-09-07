@@ -1,13 +1,17 @@
 package com.flores.nico.wallet;
 
-import android.app.Activity;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ListView;
 
+import com.flores.nico.adapters.category.CategoryListAdapter;
+import com.flores.nico.database.Category;
+
+import java.util.List;
 
 
 /**
@@ -20,6 +24,9 @@ import android.view.ViewGroup;
  *
  */
 public class CategoryFragment extends Fragment {
+    private EditText categoryName;
+    private EditText categoryDescription;
+    private List<Category> categories;
 
     /*private OnFragmentInteractionListener mListener;*/
 
@@ -31,13 +38,23 @@ public class CategoryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        categories = Category.listAll(Category.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_category, container, false);
+        View layout = inflater.inflate(R.layout.fragment_category, container, false);
+
+        categoryName = (EditText) layout.findViewById(R.id.categoryFragmentInputName);
+        categoryDescription = (EditText) layout.findViewById(R.id.categoryFragmentInputDescription);
+
+        ListView categoriesLv = (ListView) layout.findViewById(R.id.categoryFragmentLvCategories);
+        CategoryListAdapter adapter = new CategoryListAdapter(getActivity().getApplicationContext(),
+                R.layout.category_list_adapter, categories);
+        categoriesLv.setAdapter(adapter);
+        return layout;
     }
 
     /*// TODO: Rename method, update argument and hook method into UI event

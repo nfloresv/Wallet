@@ -30,7 +30,8 @@
             android:layout_height="wrap_content"
             android:text="@string/movement_fragment_tv_category"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +42,8 @@
             android:layout_height="wrap_content"
             android:text="@string/movement_fragment_tv_type"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,7 +54,8 @@
             android:layout_height="wrap_content"
             android:text="@string/movement_fragment_tv_date"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
         <DatePicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,11 +69,13 @@
             android:text="@string/movement_fragment_tv_description"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:labelFor="@+id/inputMovementDescription"/>
+            android:labelFor="@+id/inputMovementDescription"
+            android:layout_marginTop="10dp"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:inputType="textMultiLine"
+            android:inputType="text|textAutoCorrect|textMultiLine"
+            android:lines="5"
             android:ems="10"
             android:id="@+id/inputMovementDescription"
             android:layout_weight="1"/>
@@ -80,7 +85,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:text="@string/movement_fragment_btn_save"/>
+            android:text="@string/movement_fragment_btn_save"
+            android:layout_marginTop="10dp"/>
 
     </LinearLayout>
 </ScrollView>
