@@ -6,11 +6,10 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.flores.nico.adapters.movement.MovementAdapter;
+import com.flores.nico.adapters.movement.MovementListAdapter;
 import com.flores.nico.database.Movement;
 
 import java.util.List;
@@ -109,7 +108,7 @@ public class DashboardFragment extends Fragment {
         if (dashboardMovements.size() > 10) {
             subMovements = dashboardMovements.subList(0, 10);
         }
-        MovementAdapter adapter = new MovementAdapter(getActivity().getApplicationContext(),
+        MovementListAdapter adapter = new MovementListAdapter(getActivity().getApplicationContext(),
                 R.layout.movement_layout, subMovements);
         lvDashvoardTransactions.setAdapter(adapter);
         return layout;

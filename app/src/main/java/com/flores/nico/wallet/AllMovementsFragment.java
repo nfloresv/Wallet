@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.flores.nico.adapters.movement.MovementAdapter;
+import com.flores.nico.adapters.movement.MovementListAdapter;
 import com.flores.nico.database.Movement;
 
 import java.util.List;
@@ -91,7 +91,7 @@ public class AllMovementsFragment extends Fragment {
         }
 
         ListView lvAllMovements = (ListView) layout.findViewById(R.id.lvAllTransactions);
-        MovementAdapter adapter = new MovementAdapter(getActivity().getApplicationContext(),
+        MovementListAdapter adapter = new MovementListAdapter(getActivity().getApplicationContext(),
                 R.layout.movement_layout, allMovements);
         lvAllMovements.setAdapter(adapter);
         return layout;

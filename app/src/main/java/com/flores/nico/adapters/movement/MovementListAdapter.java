@@ -16,12 +16,12 @@ import java.util.List;
 /**
  * Created by nicoflores on 05-09-14.
  */
-public class MovementAdapter extends ArrayAdapter<Movement> {
+public class MovementListAdapter extends ArrayAdapter<Movement> {
     private Context context;
     private int layoutResource;
     private List<Movement> movements;
 
-    public MovementAdapter (Context context, int resource, List<Movement> objects) {
+    public MovementListAdapter (Context context, int resource, List<Movement> objects) {
         super(context, resource, objects);
         this.context = context;
         this.layoutResource = resource;
