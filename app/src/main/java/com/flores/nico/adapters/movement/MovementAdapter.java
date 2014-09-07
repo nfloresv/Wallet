@@ -41,8 +41,10 @@ public class MovementAdapter extends ArrayAdapter<Movement> {
             TextView movementDate = (TextView) row.findViewById(R.id.movementLayoutDate);
             TextView movementAmount = (TextView) row.findViewById(R.id.movementLayoutAmount);
             TextView movementCategory = (TextView) row.findViewById(R.id.movementLayoutCategory);
+            TextView movementDescription = (TextView) row.findViewById(R.id
+                    .movementLayoutDescription);
 
-            holder = new MovementHolder(movementDate, movementAmount, movementCategory);
+            holder = new MovementHolder(movementDate, movementAmount, movementCategory, movementDescription);
             row.setTag(holder);
         } else {
             holder = (MovementHolder) row.getTag();
@@ -53,6 +55,7 @@ public class MovementAdapter extends ArrayAdapter<Movement> {
         holder.setDateText(date);
         holder.setAmountText("$" + Double.toString(movement.getAmount()));
         holder.setCategoryText(movement.getCategory().getName());
+        holder.setDescriptionText(movement.getDescription());
         holder.setIncome(movement.isIncome());
 
         return row;
@@ -62,11 +65,14 @@ public class MovementAdapter extends ArrayAdapter<Movement> {
         private TextView movementDate;
         private TextView movementAmount;
         private TextView movementCategory;
+        private TextView movementDescription;
 
-        public MovementHolder (TextView movementDate, TextView movementAmount, TextView movementCategory) {
+        public MovementHolder (TextView movementDate, TextView movementAmount,
+                               TextView movementCategory, TextView movementDescription) {
             this.movementDate = movementDate;
             this.movementAmount = movementAmount;
             this.movementCategory = movementCategory;
+            this.movementDescription = movementDescription;
         }
 
         public void setDateText (String date) {
@@ -79,6 +85,10 @@ public class MovementAdapter extends ArrayAdapter<Movement> {
 
         public void setCategoryText (String category) {
             movementCategory.setText(category);
+        }
+
+        public void setDescriptionText (String description) {
+            movementDescription.setText(description);
         }
 
         public void setIncome(Boolean income) {

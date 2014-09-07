@@ -24,4 +24,13 @@
         android:layout_below="@+id/movementLayoutDate"
         android:textSize="18sp"/>
 
+    <TextView
+        android:id="@+id/movementLayoutDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_below="@+id/movementLayoutCategory"
+        android:textAlignment="textEnd"
+        android:singleLine="true"/>
+
 </RelativeLayout>
