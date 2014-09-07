@@ -109,7 +109,7 @@ public class DashboardFragment extends Fragment {
             subMovements = dashboardMovements.subList(0, 10);
         }
         MovementListAdapter adapter = new MovementListAdapter(getActivity().getApplicationContext(),
-                R.layout.movement_list_layout, subMovements);
+                R.layout.movement_list_adapter, subMovements);
         lvDashvoardTransactions.setAdapter(adapter);
         return layout;
     }
