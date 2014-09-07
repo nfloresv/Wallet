@@ -12,6 +12,7 @@
         android:text="@string/all_movements_fragment_tv_account_balance"
         android:textStyle="bold"
         android:textSize="20sp"
+        android:padding="10dp"
         android:id="@+id/tvAllMovementsAccountBalance"/>
     <TextView
         android:layout_width="wrap_content"
@@ -19,7 +20,8 @@
         android:textSize="20sp"
         android:id="@+id/tvAllTransactionsBalance"
         android:layout_toEndOf="@+id/tvAllMovementsAccountBalance"
-        android:layout_marginLeft="10dp"/>
+        android:padding="10dp"
+        android:textAlignment="viewEnd"/>
 
     <ListView
         android:layout_width="match_parent"

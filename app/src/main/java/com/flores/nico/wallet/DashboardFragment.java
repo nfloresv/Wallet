@@ -1,5 +1,6 @@
 package com.flores.nico.wallet;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.flores.nico.adapters.movement.MovementAdapter;
+import com.flores.nico.database.Movement;
+
+import java.util.List;
 
 
 /**
@@ -20,10 +26,10 @@ import android.widget.TextView;
  *
  */
 public class DashboardFragment extends Fragment {
-    private TextView tvDashboardBalance;
-    private TextView tvDashboardIncome;
-    private TextView tvDashboardOutcome;
-    private ListView lvDashvoardTransactions;
+    private List<Movement> dashboardMovements;
+    private double dashboardBalance;
+    private double dashboardIncome;
+    private double dashboardOutcome;
     /*// TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,6 +65,19 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dashboardMovements = Movement.listAll(Movement.class);
+        dashboardBalance = 0;
+        dashboardIncome = 0;
+        dashboardOutcome = 0;
+        for (Movement movement : dashboardMovements) {
+            if (movement.isIncome()) {
+                dashboardBalance += movement.getAmount();
+                dashboardIncome += movement.getAmount();
+            } else {
+                dashboardBalance -= movement.getAmount();
+                dashboardOutcome += movement.getAmount();
+            }
+        }
         /*if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -70,22 +89,29 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        tvDashboardBalance = (TextView) layout.findViewById(R.id.tvDashboardBalance);
-        tvDashboardBalance.setText("$100.500");
-        tvDashboardIncome = (TextView) layout.findViewById(R.id.tvDashboardIncome);
-        tvDashboardIncome.setText("$120.000");
-        tvDashboardOutcome = (TextView) layout.findViewById(R.id.tvDashboardOutcome);
-        tvDashboardOutcome.setText("$19.500");
 
-        lvDashvoardTransactions = (ListView) layout.findViewById(R.id.lvDashboardLastMovements);
-        String[] transactionList = new String[] {
-                "Movement 1",
-                "Movement 2",
-                "Movement 3",
-                "Movement 4"
-        };
-        lvDashvoardTransactions.setAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, transactionList));
+        TextView tvDashboardBalance = (TextView) layout.findViewById(R.id.tvDashboardBalance);
+        tvDashboardBalance.setText("$" + Double.toString(dashboardBalance));
+        if (dashboardBalance < 0) {
+            tvDashboardBalance.setTextColor(Color.parseColor("#FA5858"));
+        }
+
+        TextView tvDashboardIncome = (TextView) layout.findViewById(R.id.tvDashboardIncome);
+        tvDashboardIncome.setText("$" + Double.toString(dashboardIncome));
+
+        TextView tvDashboardOutcome = (TextView) layout.findViewById(R.id.tvDashboardOutcome);
+        tvDashboardOutcome.setText("$" + Double.toString(dashboardOutcome));
+        tvDashboardOutcome.setTextColor(Color.parseColor("#FA5858"));
+
+        ListView lvDashvoardTransactions = (ListView) layout.findViewById(R.id
+                .lvDashboardLastMovements);
+        List<Movement> subMovements = dashboardMovements;
+        if (dashboardMovements.size() > 10) {
+            subMovements = dashboardMovements.subList(0, 10);
+        }
+        MovementAdapter adapter = new MovementAdapter(getActivity().getApplicationContext(),
+                R.layout.movement_layout, subMovements);
+        lvDashvoardTransactions.setAdapter(adapter);
         return layout;
     }
 

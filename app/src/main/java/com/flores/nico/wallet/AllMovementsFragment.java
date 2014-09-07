@@ -1,6 +1,7 @@
 package com.flores.nico.wallet;
 
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,6 +86,9 @@ public class AllMovementsFragment extends Fragment {
         TextView tvAllMovementsBalance = (TextView) layout.findViewById(R.id
                 .tvAllTransactionsBalance);
         tvAllMovementsBalance.setText("$" + Double.toString(allMovementsBalance));
+        if (allMovementsBalance < 0) {
+            tvAllMovementsBalance.setTextColor(Color.parseColor("#FA5858"));
+        }
 
         ListView lvAllMovements = (ListView) layout.findViewById(R.id.lvAllTransactions);
         MovementAdapter adapter = new MovementAdapter(getActivity().getApplicationContext(),

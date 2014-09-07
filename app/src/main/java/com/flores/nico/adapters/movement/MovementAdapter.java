@@ -1,8 +1,7 @@
 package com.flores.nico.adapters.movement;
 
-import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +33,9 @@ public class MovementAdapter extends ArrayAdapter<Movement> {
         View row = convertView;
         MovementHolder holder;
 
-        if (row != null) {
-            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+        if (row == null) {
+            LayoutInflater inflater = (LayoutInflater)context.getSystemService
+                    (Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layoutResource, parent, false);
 
             TextView movementDate = (TextView) row.findViewById(R.id.movementLayoutDate);
@@ -49,10 +49,11 @@ public class MovementAdapter extends ArrayAdapter<Movement> {
         }
 
         Movement movement = movements.get(position);
-        Log.d("Movement", movement.toString());
-        holder.setDateText(movement.getMovement_date().toString());
+        String date = String.format("%1$ta %1$td %1$tb %1$tY", movement.getMovement_date());/*"%1$tF"*/
+        holder.setDateText(date);
         holder.setAmountText("$" + Double.toString(movement.getAmount()));
         holder.setCategoryText(movement.getCategory().getName());
+        holder.setIncome(movement.isIncome());
 
         return row;
     }
@@ -78,6 +79,14 @@ public class MovementAdapter extends ArrayAdapter<Movement> {
 
         public void setCategoryText (String category) {
             movementCategory.setText(category);
+        }
+
+        public void setIncome(Boolean income) {
+            if (!income) {
+                movementAmount.setTextColor(Color.parseColor("#FA5858"));
+            } else {
+                movementAmount.setTextColor(Color.parseColor("#BDBDBD"));
+            }
         }
     }
 }
