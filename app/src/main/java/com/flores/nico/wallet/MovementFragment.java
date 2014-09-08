@@ -78,36 +78,47 @@ public class MovementFragment extends Fragment {
     }
 
     public void saveMovement(View view) {
-        createMovement();
-
-        resetView();
-
         Context context = getActivity().getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
-        String message = getString(R.string.toast_movement_fragment_movement_saved);
+        String message;
+
+        boolean result = createMovement();
+        if (result) {
+            message = getString(R.string.toast_movement_fragment_movement_saved);
+            resetView();
+        } else {
+            message = getString(R.string.toast_movement_fragment_movement_error);
+        }
+
         Toast toast = Toast.makeText(context, message, duration);
         toast.show();
     }
 
-    private void createMovement() {
+    private boolean createMovement() {
         EditText movementAmount = (EditText) getActivity().findViewById(R.id.inputMovementAmount);
         Spinner movementCategory = (Spinner) getActivity().findViewById(R.id.inputMovementCategory);
         Spinner movementType = (Spinner) getActivity().findViewById(R.id.inputMovementType);
         DatePicker movementDate = (DatePicker) getActivity().findViewById(R.id.inputMovementDatePicker);
         EditText movementDescription = (EditText) getActivity().findViewById(R.id.inputMovementDescription);
 
-        double amount = Double.parseDouble(movementAmount.getText().toString());
-        Category category = Category.find(Category.class, "name = ?",
-                movementCategory.getSelectedItem().toString()).get(0);
-        String selected_type = movementType.getSelectedItem().toString();
-        String array_type = getResources().getStringArray(R.array
-                .movement_fragment_spinner_movement_type)[0];
-        boolean type = array_type.equalsIgnoreCase(selected_type);
-        Date date = new Date(movementDate.getCalendarView().getDate());
-        String description = movementDescription.getText().toString();
+        if (!movementAmount.getText().toString().isEmpty()) {
+            double amount = Double.parseDouble(movementAmount.getText().toString());
+            Category category = Category.find(Category.class, "name = ?",
+                    movementCategory.getSelectedItem().toString()).get(0);
+            String selected_type = movementType.getSelectedItem().toString();
+            String array_type = getResources().getStringArray(R.array
+                    .movement_fragment_spinner_movement_type)[0];
+            boolean type = array_type.equalsIgnoreCase(selected_type);
+            Date date = new Date(movementDate.getCalendarView().getDate());
+            String description = movementDescription.getText().toString();
 
-        Movement movement = new Movement(amount, category, type, date, description);
-        movement.save();
+            Movement movement = new Movement(amount, category, type, date, description);
+            movement.save();
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void resetView() {

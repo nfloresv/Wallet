@@ -22,6 +22,9 @@
     <string name="toast_login_activity_invalid_email">Invalid E-mail</string>
     <string name="toast_login_activity_invalid_password">Invalid Password</string>
     <string name="toast_movement_fragment_movement_saved">Movement correctly saved</string>
+    <string name="toast_movement_fragment_movement_error">Please provide an amount</string>
+    <string name="toast_category_fragment_category_saved">Category correctly saved</string>
+    <string name="toast_category_fragment_category_error">Please provide a name</string>
 
     <!--Default Categories-->
     <string name="category_food">Food</string>
