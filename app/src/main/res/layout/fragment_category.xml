@@ -16,7 +16,7 @@
         android:id="@+id/categoryFragmentInputName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text|textAutoCorrect|textAutoComplete"/>
+        android:inputType="text|textAutoCorrect"/>
 
     <TextView
         android:layout_width="match_parent"

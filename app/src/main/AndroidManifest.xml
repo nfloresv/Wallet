@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.flores.nico.wallet" >
 
+    <uses-feature android:name="android.hardware.Camera" android:required="false" />
+    <uses-permission android:name="android.permission.write_external_storage" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -12,6 +15,7 @@
         <meta-data android:name="VERSION" android:value="1" />
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.flores.nico" />
+
 
         <activity
             android:name=".HomeActivity"

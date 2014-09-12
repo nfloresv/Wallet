@@ -24,7 +24,7 @@ public class HomeActivity extends Activity {
     private ListView mDrawerList;
     private Credentials credentials;
 
-    public static final int LOGIN_CODE = 0x00001;
+    public static final int LOGIN_ACTIVITY_REQUEST_CODE = 0x00001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,7 @@ public class HomeActivity extends Activity {
 
             //Start user login
             Intent intent = new Intent(this, LoginActivity.class);
-            startActivityForResult(intent, LOGIN_CODE);
+            startActivityForResult(intent, LOGIN_ACTIVITY_REQUEST_CODE);
         }
     }
 
@@ -85,7 +85,7 @@ public class HomeActivity extends Activity {
         } else if (id == R.id.action_logout) {
             boolean result = credentials.setLogout();
             Intent intent = new Intent(this, LoginActivity.class);
-            startActivityForResult(intent, LOGIN_CODE);
+            startActivityForResult(intent, LOGIN_ACTIVITY_REQUEST_CODE);
             return result;
         }
         return super.onOptionsItemSelected(item);
@@ -93,7 +93,8 @@ public class HomeActivity extends Activity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == LOGIN_CODE) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LOGIN_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 String emailText = data.getStringExtra(LoginActivity.USER_EMAIL);
                 String passwordText = data.getStringExtra(LoginActivity.USER_PASSWORD);

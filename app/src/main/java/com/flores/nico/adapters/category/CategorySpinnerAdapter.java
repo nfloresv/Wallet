@@ -13,14 +13,14 @@ import com.flores.nico.wallet.R;
 import java.util.List;
 
 /**
- * Created by nicoflores on 07-09-14.
+ * Created by nicoflores on 09-09-14.
  */
-public class CategoryListAdapter extends ArrayAdapter<Category> {
+public class CategorySpinnerAdapter extends ArrayAdapter<Category> {
     private Context context;
     private int resource;
     private List<Category> categories;
 
-    public CategoryListAdapter (Context context, int resource, List<Category> objects) {
+    public CategorySpinnerAdapter (Context context, int resource, List<Category> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
@@ -29,6 +29,7 @@ public class CategoryListAdapter extends ArrayAdapter<Category> {
 
     @Override
     public View getView (int position, View convertView, ViewGroup parent) {
+        /*This method is used to return the customized view at specified position in list.*/
         View row = convertView;
         CategoryHolder holder;
 
@@ -37,9 +38,37 @@ public class CategoryListAdapter extends ArrayAdapter<Category> {
                     .LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(resource, parent, false);
 
-            TextView categoryName = (TextView) row.findViewById(R.id.categoryListLayoutName);
+            TextView categoryName = (TextView) row.findViewById(R.id.categorySpinnerLayoutName);
             TextView categoryDescription = (TextView) row.findViewById(R.id
-                    .categoryListLayoutDescription);
+                    .categorySpinnerLayoutDescription);
+
+            holder = new CategoryHolder(categoryName, categoryDescription);
+            row.setTag(holder);
+        } else {
+            holder = (CategoryHolder) row.getTag();
+        }
+
+        Category category = categories.get(position);
+        holder.setNameText(category.getName());
+        holder.setVisibleDescription(false);
+
+        return row;
+    }
+
+    @Override
+    public View getDropDownView (int position, View convertView, ViewGroup parent) {
+        /*This method is used to display the dropdown popup that contains data.*/
+        View row = convertView;
+        CategoryHolder holder;
+
+        if (row == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context
+                    .LAYOUT_INFLATER_SERVICE);
+            row = inflater.inflate(resource, parent, false);
+
+            TextView categoryName = (TextView) row.findViewById(R.id.categorySpinnerLayoutName);
+            TextView categoryDescription = (TextView) row.findViewById(R.id
+                    .categorySpinnerLayoutDescription);
 
             holder = new CategoryHolder(categoryName, categoryDescription);
             row.setTag(holder);
@@ -50,6 +79,7 @@ public class CategoryListAdapter extends ArrayAdapter<Category> {
         Category category = categories.get(position);
         holder.setNameText(category.getName());
         holder.setDescriptionText(category.getDescription());
+        holder.setVisibleDescription(true);
 
         return row;
     }
@@ -70,6 +100,13 @@ public class CategoryListAdapter extends ArrayAdapter<Category> {
         public void setDescriptionText(String description) {
             categoryDescription.setText(description);
         }
-    }
 
+        public void setVisibleDescription (boolean visibility) {
+            if (visibility) {
+                categoryDescription.setVisibility(View.VISIBLE);
+            } else {
+                categoryDescription.setVisibility(View.GONE);
+            }
+        }
+    }
 }

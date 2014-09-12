@@ -1,5 +1,7 @@
 package com.flores.nico.database;
 
+import android.net.Uri;
+
 import com.orm.SugarRecord;
 
 import java.util.Date;
@@ -13,16 +15,19 @@ public class Movement extends SugarRecord<Movement> {
     private boolean income;
     private Date movement_date;
     private String description;
+    private Uri fileUri;
 
     public Movement () {
     }
 
-    public Movement (double amount, Category category, boolean income, Date movement_date, String description) {
+    public Movement (double amount, Category category, boolean income, Date movement_date,
+                     String description, Uri fileUri) {
         this.amount = amount;
         this.category = category;
         this.income = income;
         this.movement_date = movement_date;
         this.description = description;
+        this.fileUri = fileUri;
     }
 
     public double getAmount () {
@@ -63,6 +68,14 @@ public class Movement extends SugarRecord<Movement> {
 
     public void setDescription (String description) {
         this.description = description;
+    }
+
+    public Uri getFileUri () {
+        return fileUri;
+    }
+
+    public void setFileUri (Uri fileUri) {
+        this.fileUri = fileUri;
     }
 
     @Override

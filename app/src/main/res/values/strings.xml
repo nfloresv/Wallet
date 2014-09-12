@@ -8,6 +8,7 @@
     <!-- Menu Items -->
     <string name="action_settings">Settings</string>
     <string name="action_logout">Logout</string>
+    <string name="action_movement_capture_image">Take Picture</string>
 
     <!-- Codes -->
     <string name="preferences_credentials">com.flores.nico.utils.CREDENTIALS_PREFERENCES</string>
@@ -23,6 +24,10 @@
     <string name="toast_login_activity_invalid_password">Invalid Password</string>
     <string name="toast_movement_fragment_movement_saved">Movement correctly saved</string>
     <string name="toast_movement_fragment_movement_error">Please provide an amount</string>
+    <string name="toast_movement_fragment_image_not_captured">Image not captured</string>
+    <string name="toast_movement_fragment_image_error">Something went wrong</string>
+    <string name="toast_movement_fragment_camera_error">Error taking picture</string>
+    <string name="toast_movement_fragment_image_captured">Image saved</string>
     <string name="toast_category_fragment_category_saved">Category correctly saved</string>
     <string name="toast_category_fragment_category_error">Please provide a name</string>
 
@@ -69,7 +74,6 @@
     <string name="dashboard_fragment_tv_account_outcome">Account Outcome</string>
     <string name="category_fragment_tv_name">Category Name</string>
     <string name="category_fragment_tv_description">Category Description</string>
-
     <!-- Arrays -->
     <string-array name="drawer_section_array">
         <item>Movement</item>
