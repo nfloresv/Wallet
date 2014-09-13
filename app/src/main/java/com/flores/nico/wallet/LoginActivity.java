@@ -21,7 +21,6 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -39,6 +38,10 @@ public class LoginActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     public void login(View view) {
@@ -75,9 +78,5 @@ public class LoginActivity extends Activity {
             Toast toast = Toast.makeText(context, message, duration);
             toast.show();
         }
-    }
-
-    boolean isEmailValid(CharSequence email) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }

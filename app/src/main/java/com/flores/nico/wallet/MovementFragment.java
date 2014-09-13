@@ -42,11 +42,11 @@ import java.util.List;
  *
  */
 public class MovementFragment extends Fragment {
-    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 0x00011;
-
     private CategorySpinnerAdapter movementCategoryArray;
     private ArrayAdapter<CharSequence> movementTypeArray;
     private Uri fileUri;
+
+    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 0x00011;
 
     public static MovementFragment newInstance() {
         MovementFragment fragment = new MovementFragment();
@@ -139,23 +139,6 @@ public class MovementFragment extends Fragment {
         }
     }
 
-    public void saveMovement(View view) {
-        Context context = getActivity().getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        String message;
-
-        boolean result = createMovement();
-        if (result) {
-            message = getString(R.string.toast_movement_fragment_movement_saved);
-            resetView();
-        } else {
-            message = getString(R.string.toast_movement_fragment_movement_error);
-        }
-
-        Toast toast = Toast.makeText(context, message, duration);
-        toast.show();
-    }
-
     private boolean createMovement() {
         EditText movementAmount = (EditText) getActivity().findViewById(R.id.inputMovementAmount);
         Spinner movementCategory = (Spinner) getActivity().findViewById(R.id.inputMovementCategory);
@@ -220,4 +203,22 @@ public class MovementFragment extends Fragment {
         }
         return null;
     }
+
+    public void saveMovement(View view) {
+        Context context = getActivity().getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+        String message;
+
+        boolean result = createMovement();
+        if (result) {
+            message = getString(R.string.toast_movement_fragment_movement_saved);
+            resetView();
+        } else {
+            message = getString(R.string.toast_movement_fragment_movement_error);
+        }
+
+        Toast toast = Toast.makeText(context, message, duration);
+        toast.show();
+    }
+
 }

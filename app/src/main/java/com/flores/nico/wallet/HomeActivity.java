@@ -1,12 +1,16 @@
 package com.flores.nico.wallet;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +27,10 @@ public class HomeActivity extends Activity {
     private Fragment actualFragment;
     private ListView mDrawerList;
     private Credentials credentials;
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private CharSequence mDrawerTitle;
+    private CharSequence mTitle;
 
     public static final int LOGIN_ACTIVITY_REQUEST_CODE = 0x00001;
 
@@ -55,6 +63,36 @@ public class HomeActivity extends Activity {
                 .replace(R.id.container, actualFragment)
                 .commit();
 
+        final ActionBar actionBar = getActionBar();
+        mTitle = mDrawerTitle = getTitle();
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        // set a custom shadow that overlays the main content when the drawer opens
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer,
+                R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerClosed (View drawerView) {
+                super.onDrawerClosed(drawerView);
+                if (actionBar != null) {
+                    actionBar.setTitle(mTitle);
+                }
+            }
+
+            @Override
+            public void onDrawerOpened (View drawerView) {
+                super.onDrawerOpened(drawerView);
+                if (actionBar != null) {
+                    actionBar.setTitle(mDrawerTitle);
+                }
+            }
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+        }
+
         if (!credentials.isUserLoggedIn()) {
             //Only pre load the database if the user is not logged in
             Initializer initializer = new Initializer(getApplicationContext(),
@@ -80,7 +118,9 @@ public class HomeActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        } else if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_logout) {
             boolean result = credentials.setLogout();
@@ -112,11 +152,22 @@ public class HomeActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onPostCreate (Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged (Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             selectItem(position);
             mDrawerList.setItemChecked(position, true);
-            DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
             mDrawerLayout.closeDrawer(mDrawerList);
         }
     }
@@ -124,12 +175,16 @@ public class HomeActivity extends Activity {
     private void selectItem (int position) {
         if (position == 1) {
             actualFragment = new MovementFragment();
+            mTitle = getString(R.string.title_movement_fragment);
         } else if (position == 2) {
             actualFragment = new AllMovementsFragment();
+            mTitle = getString(R.string.title_all_movements_fragment);
         } else if (position == 3) {
             actualFragment = new DashboardFragment();
+            mTitle = getString(R.string.title_dashboard_fragment);
         } else if (position == 4) {
             actualFragment = new CategoryFragment();
+            mTitle = getString(R.string.title_category_fragment);
         }
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
