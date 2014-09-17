@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -102,7 +103,7 @@ public class MovementFragment extends Fragment {
     public boolean onOptionsItemSelected (MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_movement_capture_image) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            Intent intent = new Intent(/*android.provider.*/MediaStore.ACTION_IMAGE_CAPTURE);
 
             fileUri = getOutputMediaFileUri();
             if (fileUri != null) {
@@ -181,12 +182,12 @@ public class MovementFragment extends Fragment {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {
             File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment
-                    .DIRECTORY_PICTURES), "Wallet Image");
+                    .DIRECTORY_PICTURES), "Wallet");
             if (!mediaStorageDir.exists()) {
                 if (!mediaStorageDir.mkdirs()) {
                     Context context = getActivity().getApplicationContext();
                     mediaStorageDir = new File(context.getExternalFilesDir(Environment
-                            .DIRECTORY_PICTURES), "Wallet Image");
+                            .DIRECTORY_PICTURES), "Wallet");
                     if (!mediaStorageDir.exists()) {
                         if (!mediaStorageDir.mkdirs()) {
                             return null;
@@ -196,10 +197,9 @@ public class MovementFragment extends Fragment {
             }
 
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_" +
-                    timeStamp + ".jpg");
 
-            return mediaFile;
+            return new File(mediaStorageDir.getPath() + File.separator + "IMG_" +
+                    timeStamp + ".jpg");
         }
         return null;
     }

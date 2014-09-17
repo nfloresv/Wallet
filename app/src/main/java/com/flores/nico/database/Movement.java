@@ -15,13 +15,13 @@ public class Movement extends SugarRecord<Movement> {
     private boolean income;
     private Date movement_date;
     private String description;
-    private Uri fileUri;
+    private String fileUri;
 
     public Movement () {
     }
 
     public Movement (double amount, Category category, boolean income, Date movement_date,
-                     String description, Uri fileUri) {
+                     String description, String fileUri) {
         this.amount = amount;
         this.category = category;
         this.income = income;
@@ -70,11 +70,11 @@ public class Movement extends SugarRecord<Movement> {
         this.description = description;
     }
 
-    public Uri getFileUri () {
+    public String  getFileUri () {
         return fileUri;
     }
 
-    public void setFileUri (Uri fileUri) {
+    public void setFileUri (String  fileUri) {
         this.fileUri = fileUri;
     }
 
