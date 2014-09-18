@@ -65,21 +65,21 @@ public class DashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        TextView tvDashboardBalance = (TextView) layout.findViewById(R.id.tvDashboardBalance);
+        TextView tvDashboardBalance = (TextView) layout.findViewById(R.id.dashboardFragmentTvBalance);
         tvDashboardBalance.setText("$" + Double.toString(dashboardBalance));
         if (dashboardBalance < 0) {
             tvDashboardBalance.setTextColor(Color.parseColor("#FA5858"));
         }
 
-        TextView tvDashboardIncome = (TextView) layout.findViewById(R.id.tvDashboardIncome);
+        TextView tvDashboardIncome = (TextView) layout.findViewById(R.id.dashboardFragmentTvIncome);
         tvDashboardIncome.setText("$" + Double.toString(dashboardIncome));
 
-        TextView tvDashboardOutcome = (TextView) layout.findViewById(R.id.tvDashboardOutcome);
+        TextView tvDashboardOutcome = (TextView) layout.findViewById(R.id.dashboardFragmentTvOutcome);
         tvDashboardOutcome.setText("$" + Double.toString(dashboardOutcome));
         tvDashboardOutcome.setTextColor(Color.parseColor("#FA5858"));
 
         ListView lvDashvoardTransactions = (ListView) layout.findViewById(R.id
-                .lvDashboardLastMovements);
+                .dashboardFragmentLvLastMovements);
         List<Movement> subMovements = dashboardMovements;
         if (dashboardMovements.size() > 10) {
             subMovements = dashboardMovements.subList(0, 10);

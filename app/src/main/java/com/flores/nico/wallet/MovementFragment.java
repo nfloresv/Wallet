@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -76,14 +75,14 @@ public class MovementFragment extends Fragment {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_movement, container, false);
 
-        Spinner movementType = (Spinner) layout.findViewById(R.id.inputMovementType);
+        Spinner movementType = (Spinner) layout.findViewById(R.id.movementFragmentInputType);
         // Apply the adapter to the spinner
         movementType.setAdapter(movementTypeArray);
 
-        Spinner movementCategory = (Spinner) layout.findViewById(R.id.inputMovementCategory);
+        Spinner movementCategory = (Spinner) layout.findViewById(R.id.movementFragmentInputCategory);
         movementCategory.setAdapter(movementCategoryArray);
 
-        Button saveButton = (Button) layout.findViewById(R.id.btnSave);
+        Button saveButton = (Button) layout.findViewById(R.id.movementFragmentBtnSave);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
@@ -103,7 +102,7 @@ public class MovementFragment extends Fragment {
     public boolean onOptionsItemSelected (MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_movement_capture_image) {
-            Intent intent = new Intent(/*android.provider.*/MediaStore.ACTION_IMAGE_CAPTURE);
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
             fileUri = getOutputMediaFileUri();
             if (fileUri != null) {
@@ -141,11 +140,11 @@ public class MovementFragment extends Fragment {
     }
 
     private boolean createMovement() {
-        EditText movementAmount = (EditText) getActivity().findViewById(R.id.inputMovementAmount);
-        Spinner movementCategory = (Spinner) getActivity().findViewById(R.id.inputMovementCategory);
-        Spinner movementType = (Spinner) getActivity().findViewById(R.id.inputMovementType);
-        DatePicker movementDate = (DatePicker) getActivity().findViewById(R.id.inputMovementDatePicker);
-        EditText movementDescription = (EditText) getActivity().findViewById(R.id.inputMovementDescription);
+        EditText movementAmount = (EditText) getActivity().findViewById(R.id.movementFragmentInputAmount);
+        Spinner movementCategory = (Spinner) getActivity().findViewById(R.id.movementFragmentInputCategory);
+        Spinner movementType = (Spinner) getActivity().findViewById(R.id.movementFragmentInputType);
+        DatePicker movementDate = (DatePicker) getActivity().findViewById(R.id.movementFragmentInputDatePicker);
+        EditText movementDescription = (EditText) getActivity().findViewById(R.id.movementFragmentInputDescription);
 
         if (!movementAmount.getText().toString().isEmpty()) {
             double amount = Double.parseDouble(movementAmount.getText().toString());
@@ -158,7 +157,8 @@ public class MovementFragment extends Fragment {
             Date date = new Date(movementDate.getCalendarView().getDate());
             String description = movementDescription.getText().toString();
 
-            Movement movement = new Movement(amount, category, type, date, description, fileUri);
+            Movement movement = new Movement(amount, category, type, date, description,
+                    fileUri.getPath());
             movement.save();
 
             return true;

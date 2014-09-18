@@ -8,11 +8,15 @@
     <string name="title_dashboard_fragment">Dashboard</string>
     <string name="title_movement_fragment">Movement</string>
     <string name="title_all_movements_fragment">Las Movements</string>
+    <string name="title_activity_view_category">Category</string>
+    <string name="title_activity_new_category">New Category</string>
 
     <!-- Menu Items -->
     <string name="action_settings">Settings</string>
     <string name="action_logout">Logout</string>
-    <string name="action_movement_capture_image">Take Picture</string>
+    <string name="action_movement_fragment_capture_image">Add Image</string>
+    <string name="action_view_category_activity_add">Add Category</string>
+    <string name="action_view_category_activity_edit">Edit Category</string>
     <string name="drawer_open">Drawer open</string>
     <string name="drawer_close">Drawer close</string>
 
@@ -24,7 +28,7 @@
     <string name="code_no_categories_present">com.flores.nico.utils.NO_CATEGORIES</string>
     <string name="code_categories_present">com.flores.nico.utils.CATEGORIES</string>
 
-    <!--Toast-->
+    <!-- Toast -->
     <string name="toast_login_activity_login_successfully">Login successfully</string>
     <string name="toast_login_activity_invalid_email">Invalid E-mail</string>
     <string name="toast_login_activity_invalid_password">Invalid Password</string>
@@ -36,34 +40,6 @@
     <string name="toast_movement_fragment_image_captured">Image saved</string>
     <string name="toast_category_fragment_category_saved">Category correctly saved</string>
     <string name="toast_category_fragment_category_error">Please provide a name</string>
-
-    <!--Default Categories-->
-    <string name="category_food">Food</string>
-    <string name="category_food_description">Category about the money spent/won in food</string>
-    <string name="category_entertainment">Entertainment</string>
-    <string name="category_entertainment_description">Category about the money spent/won
-        in entertainment</string>
-    <string name="category_salary">Salary</string>
-    <string name="category_salary_description">Category about the money won as salary</string>
-    <string name="category_transport">Transport</string>
-    <string name="category_transport_description">Category about the money spent/won in
-        transport</string>
-    <string name="category_service">Service</string>
-    <string name="category_service_description">Category about the money spent/won in
-        services</string>
-    <string name="category_rent">Rent</string>
-    <string name="category_rent_description">Category about the money spent/won with rent</string>
-    <string name="category_tax">Tax</string>
-    <string name="category_tax_description">Category about the money spent/won in taxes</string>
-    <string name="category_clothes">Clothes</string>
-    <string name="category_clothes_description">Category about the money spent/won in
-        clothes</string>
-    <string name="category_education">Education</string>
-    <string name="category_education_description">Category about the money spent/won in
-        education</string>
-    <string name="category_other">Other</string>
-    <string name="category_other_description">Any other thing that is not covered with the
-        others categories</string>
 
     <!-- Views Text -->
     <string name="login_activity_tv_login">Login</string>
@@ -78,19 +54,7 @@
     <string name="all_movements_fragment_tv_account_balance">Account Balance</string>
     <string name="dashboard_fragment_tv_account_income">Account Income</string>
     <string name="dashboard_fragment_tv_account_outcome">Account Outcome</string>
-    <string name="category_fragment_tv_name">Category Name</string>
-    <string name="category_fragment_tv_description">Category Description</string>
-
-    <!-- Arrays -->
-    <string-array name="drawer_section_array">
-        <item>Movement</item>
-        <item>Last Movements</item>
-        <item>Dashboard</item>
-        <item>Categories</item>
-    </string-array>
-    <string-array name="movement_fragment_spinner_movement_type">
-        <item>Income</item>
-        <item>Outcome</item>
-    </string-array>
+    <string name="edit_category_activity_tv_name">Category Name</string>
+    <string name="edit_category_activity_tv_description">Category Description</string>
 
 </resources>

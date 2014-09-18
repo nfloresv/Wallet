@@ -17,13 +17,13 @@
             android:text="@string/movement_fragment_tv_amount"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:labelFor="@+id/inputMovementAmount"/>
+            android:labelFor="@+id/movementFragmentInputAmount"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
-            android:id="@+id/inputMovementAmount"/>
+            android:id="@+id/movementFragmentInputAmount"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/inputMovementCategory"/>
+            android:id="@+id/movementFragmentInputCategory"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -47,7 +47,7 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/inputMovementType"/>
+            android:id="@+id/movementFragmentInputType"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -59,7 +59,7 @@
         <DatePicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/inputMovementDatePicker"
+            android:id="@+id/movementFragmentInputDatePicker"
             android:calendarViewShown="false"
             android:layout_gravity="center_horizontal"/>
 
@@ -69,19 +69,18 @@
             android:text="@string/movement_fragment_tv_description"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:labelFor="@+id/inputMovementDescription"
+            android:labelFor="@+id/movementFragmentInputDescription"
             android:layout_marginTop="10dp"/>
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:inputType="text|textAutoCorrect|textMultiLine"
+            android:layout_height="match_parent"
+            android:inputType="text|textAutoCorrect|textMultiLine|textCapSentences"
             android:lines="5"
             android:ems="10"
-            android:id="@+id/inputMovementDescription"
-            android:layout_weight="1"/>
+            android:id="@+id/movementFragmentInputDescription"/>
 
         <Button
-            android:id="@+id/btnSave"
+            android:id="@+id/movementFragmentBtnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.flores.nico.wallet.ViewCategory" >
+
+    <item android:id="@+id/action_view_category_edit_category"
+          android:title="@string/action_view_category_activity_edit"
+          android:icon="@android:drawable/ic_menu_edit"
+          android:showAsAction="ifRoom|withText" />
+
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+</menu>

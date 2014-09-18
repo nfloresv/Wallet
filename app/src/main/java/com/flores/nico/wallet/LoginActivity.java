@@ -48,10 +48,10 @@ public class LoginActivity extends Activity {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
 
-        EditText emailField = (EditText) findViewById(R.id.inputLoginEmail);
+        EditText emailField = (EditText) findViewById(R.id.loginActivityInputEmail);
         CharSequence emailText = emailField.getText().toString();
 
-        EditText passwordField = (EditText) findViewById(R.id.inputLoginPassword);
+        EditText passwordField = (EditText) findViewById(R.id.loginActivityInputPassword);
         String passwordText = passwordField.getText().toString();
 
         boolean validEmail = isEmailValid(emailText);

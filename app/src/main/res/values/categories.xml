@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="category_food">Food</string>
+    <string name="category_food_description">Category about the money spent/won in food</string>
+    <string name="category_entertainment">Entertainment</string>
+    <string name="category_entertainment_description">Category about the money spent/won
+        in entertainment</string>
+    <string name="category_salary">Salary</string>
+    <string name="category_salary_description">Category about the money won as salary</string>
+    <string name="category_transport">Transport</string>
+    <string name="category_transport_description">Category about the money spent/won in
+        transport</string>
+    <string name="category_service">Service</string>
+    <string name="category_service_description">Category about the money spent/won in
+        services</string>
+    <string name="category_rent">Rent</string>
+    <string name="category_rent_description">Category about the money spent/won with rent</string>
+    <string name="category_tax">Tax</string>
+    <string name="category_tax_description">Category about the money spent/won in taxes</string>
+    <string name="category_clothes">Clothes</string>
+    <string name="category_clothes_description">Category about the money spent/won in
+        clothes</string>
+    <string name="category_education">Education</string>
+    <string name="category_education_description">Category about the money spent/won in
+        education</string>
+    <string name="category_other">Other</string>
+    <string name="category_other_description">Any other thing that is not covered with the
+        others categories</string>
+</resources>

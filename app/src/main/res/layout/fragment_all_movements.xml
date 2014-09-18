@@ -13,20 +13,20 @@
         android:textStyle="bold"
         android:textSize="20sp"
         android:padding="10dp"
-        android:id="@+id/tvAllMovementsAccountBalance"/>
+        android:id="@+id/allMovementsFragmentTvAccountBalance"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:id="@+id/tvAllTransactionsBalance"
-        android:layout_toEndOf="@+id/tvAllMovementsAccountBalance"
+        android:id="@+id/allMovementsFragmentTvBalance"
+        android:layout_toEndOf="@+id/allMovementsFragmentTvAccountBalance"
         android:padding="10dp"
         android:textAlignment="viewEnd"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lvAllTransactions"
-        android:layout_below="@+id/tvAllMovementsAccountBalance"/>
+        android:id="@+id/allMovementsFragmentLvAllMovements"
+        android:layout_below="@+id/allMovementsFragmentTvAccountBalance"/>
 
 </RelativeLayout>

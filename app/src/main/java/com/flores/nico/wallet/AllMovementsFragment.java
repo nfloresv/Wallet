@@ -56,13 +56,13 @@ public class AllMovementsFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_all_movements, container, false);
 
         TextView tvAllMovementsBalance = (TextView) layout.findViewById(R.id
-                .tvAllTransactionsBalance);
+                .allMovementsFragmentTvBalance);
         tvAllMovementsBalance.setText("$" + Double.toString(allMovementsBalance));
         if (allMovementsBalance < 0) {
             tvAllMovementsBalance.setTextColor(Color.parseColor("#FA5858"));
         }
 
-        ListView lvAllMovements = (ListView) layout.findViewById(R.id.lvAllTransactions);
+        ListView lvAllMovements = (ListView) layout.findViewById(R.id.allMovementsFragmentLvAllMovements);
         MovementListAdapter adapter = new MovementListAdapter(getActivity().getApplicationContext(),
                 R.layout.movement_list_adapter, allMovements);
         lvAllMovements.setAdapter(adapter);

@@ -1,15 +1,18 @@
 package com.flores.nico.wallet;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.flores.nico.adapters.category.CategoryListAdapter;
 import com.flores.nico.database.Category;
@@ -27,11 +30,7 @@ import java.util.List;
  *
  */
 public class CategoryFragment extends Fragment {
-    private EditText categoryName;
-    private EditText categoryDescription;
     private List<Category> categories;
-
-    /*private OnFragmentInteractionListener mListener;*/
 
     public static CategoryFragment newInstance() {
         CategoryFragment fragment = new CategoryFragment();
@@ -41,6 +40,8 @@ public class CategoryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
         categories = Category.listAll(Category.class);
     }
 
@@ -50,86 +51,47 @@ public class CategoryFragment extends Fragment {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_category, container, false);
 
-        categoryName = (EditText) layout.findViewById(R.id.categoryFragmentInputName);
-        categoryDescription = (EditText) layout.findViewById(R.id.categoryFragmentInputDescription);
-
         ListView categoriesLv = (ListView) layout.findViewById(R.id.categoryFragmentLvCategories);
         CategoryListAdapter adapter = new CategoryListAdapter(getActivity().getApplicationContext(),
                 R.layout.category_list_adapter, categories);
         categoriesLv.setAdapter(adapter);
-
-        Button saveButton = (Button) layout.findViewById(R.id.categoryFragmentBtnSave);
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        categoriesLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick (View view) {
-                saveCategory(view);
+            public void onItemClick (AdapterView<?> adapterView, View view, int i, long l) {
+                categoryClick(i);
             }
         });
         return layout;
     }
 
-    public void saveCategory(View view) {
-        Toast toast;
-        String message;
-        int duration = Toast.LENGTH_SHORT;
-
-        String name = categoryName.getText().toString();
-        String description = categoryDescription.getText().toString();
-        if (!name.isEmpty()) {
-            Category category = new Category(name, description);
-            category.save();
-
-            message = getString(R.string.toast_category_fragment_category_saved);
-            toast = Toast.makeText(getActivity().getApplicationContext(), message, duration);
-
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, new CategoryFragment())
-                    .commit();
-        } else {
-            message = getString(R.string.toast_category_fragment_category_error);
-            toast = Toast.makeText(getActivity().getApplicationContext(), message, duration);
-        }
-        toast.show();
-    }
-
-    /*// TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    @Override
+    public void onCreateOptionsMenu (Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.category, menu);
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+    public boolean onOptionsItemSelected (MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_view_category_add_category) {
+            Context context = getActivity().getApplicationContext();
+
+            Intent intent = new Intent(context, EditCategory.class);
+            startActivity(intent);
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }*/
+    public void categoryClick (int position) {
+        Category category = categories.get(position);
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    /*public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
-    }*/
+        Context context = getActivity().getApplicationContext();
+
+        Intent intent = new Intent(context, ViewCategory.class);
+        intent.putExtra(ViewCategory.CATEGORY_ID, category.getId());
+
+        startActivity(intent);
+    }
 
 }

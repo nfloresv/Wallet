@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="drawer_section_array">
+        <item>Movement</item>
+        <item>Last Movements</item>
+        <item>Dashboard</item>
+        <item>Categories</item>
+    </string-array>
+    <string-array name="movement_fragment_spinner_movement_type">
+        <item>Income</item>
+        <item>Outcome</item>
+    </string-array>
+</resources>
