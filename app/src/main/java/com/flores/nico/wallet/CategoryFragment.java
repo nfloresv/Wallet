@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import com.flores.nico.adapters.category.CategoryListAdapter;
@@ -81,6 +80,12 @@ public class CategoryFragment extends Fragment {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume () {
+        super.onResume();
+        categories = Category.listAll(Category.class);
     }
 
     public void categoryClick (int position) {

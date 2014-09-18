@@ -25,6 +25,7 @@ import com.flores.nico.utils.Initializer;
 
 public class HomeActivity extends Activity {
     private Fragment actualFragment;
+    private int fragmentId;
     private ListView mDrawerList;
     private Credentials credentials;
     private DrawerLayout mDrawerLayout;
@@ -32,6 +33,7 @@ public class HomeActivity extends Activity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
 
+    private static final String FRAGMENT_CODE = "com.flores.nico.wallet.ACTUAL_FRAGMENT";
     public static final int LOGIN_ACTIVITY_REQUEST_CODE = 0x00001;
 
     @Override
@@ -54,14 +56,21 @@ public class HomeActivity extends Activity {
                 android.R.layout.simple_list_item_1, sectionsList));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-        if (actualFragment == null) {
+        if (savedInstanceState != null) {
+            int position = savedInstanceState.getInt(FRAGMENT_CODE, 1);
+            selectItem(position);
+        } else {
+            selectItem(1);
+        }
+        /*if (actualFragment == null) {
             actualFragment = new MovementFragment();
+            fragmentId = 1;
         }
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, actualFragment)
-                .commit();
+                .commit();*/
 
         final ActionBar actionBar = getActionBar();
         mTitle = mDrawerTitle = getTitle();
@@ -164,6 +173,12 @@ public class HomeActivity extends Activity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    @Override
+    protected void onSaveInstanceState (Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(FRAGMENT_CODE, fragmentId);
+    }
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             selectItem(position);
@@ -175,15 +190,19 @@ public class HomeActivity extends Activity {
     private void selectItem (int position) {
         if (position == 1) {
             actualFragment = new MovementFragment();
+            fragmentId = position;
             mTitle = getString(R.string.title_movement_fragment);
         } else if (position == 2) {
             actualFragment = new AllMovementsFragment();
+            fragmentId = position;
             mTitle = getString(R.string.title_all_movements_fragment);
         } else if (position == 3) {
             actualFragment = new DashboardFragment();
+            fragmentId = position;
             mTitle = getString(R.string.title_dashboard_fragment);
         } else if (position == 4) {
             actualFragment = new CategoryFragment();
+            fragmentId = position;
             mTitle = getString(R.string.title_category_fragment);
         }
         FragmentManager fragmentManager = getFragmentManager();
