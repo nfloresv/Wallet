@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.flores.nico.database.Category;
 
 
-public class ViewCategory extends Activity {
+public class ViewCategoryActivity extends Activity {
     private long category_id;
     public static final String CATEGORY_ID = "com.flores.nico.wallet.CATEGORY_ID";
 
@@ -71,8 +71,8 @@ public class ViewCategory extends Activity {
         } else if (id == R.id.action_view_category_edit_category) {
             Context context = getApplicationContext();
 
-            Intent intent = new Intent(context, EditCategory.class);
-            intent.putExtra(EditCategory.CATEGORY_ID, category_id);
+            Intent intent = new Intent(context, EditCategoryActivity.class);
+            intent.putExtra(EditCategoryActivity.CATEGORY_ID, category_id);
             startActivity(intent);
             return true;
         }

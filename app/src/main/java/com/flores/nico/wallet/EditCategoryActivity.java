@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.flores.nico.database.Category;
 
 
-public class EditCategory extends Activity {
+public class EditCategoryActivity extends Activity {
     private long category_id;
     private EditText categoryName;
     private EditText categoryDescription;

@@ -10,6 +10,7 @@
     <string name="title_all_movements_fragment">Las Movements</string>
     <string name="title_activity_view_category">Category</string>
     <string name="title_activity_new_category">New Category</string>
+    <string name="title_activity_view_movement">Movement</string>
 
     <!-- Menu Items -->
     <string name="action_settings">Settings</string>
@@ -56,5 +57,7 @@
     <string name="dashboard_fragment_tv_account_outcome">Account Outcome</string>
     <string name="edit_category_activity_tv_name">Category Name</string>
     <string name="edit_category_activity_tv_description">Category Description</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>

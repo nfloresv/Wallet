@@ -75,7 +75,7 @@ public class CategoryFragment extends Fragment {
         if (id == R.id.action_view_category_add_category) {
             Context context = getActivity().getApplicationContext();
 
-            Intent intent = new Intent(context, EditCategory.class);
+            Intent intent = new Intent(context, EditCategoryActivity.class);
             startActivity(intent);
             return true;
         }
@@ -93,8 +93,8 @@ public class CategoryFragment extends Fragment {
 
         Context context = getActivity().getApplicationContext();
 
-        Intent intent = new Intent(context, ViewCategory.class);
-        intent.putExtra(ViewCategory.CATEGORY_ID, category.getId());
+        Intent intent = new Intent(context, ViewCategoryActivity.class);
+        intent.putExtra(ViewCategoryActivity.CATEGORY_ID, category.getId());
 
         startActivity(intent);
     }

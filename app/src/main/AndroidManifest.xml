@@ -41,7 +41,7 @@
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name=".ViewCategory"
+            android:name=".ViewCategoryActivity"
             android:label="@string/title_activity_view_category"
             android:parentActivityName=".HomeActivity" >
             <meta-data
@@ -49,12 +49,20 @@
                 android:value="com.flores.nico.wallet.HomeActivity" />
         </activity>
         <activity
-            android:name=".EditCategory"
+            android:name=".EditCategoryActivity"
             android:label="@string/title_activity_new_category"
-            android:parentActivityName=".ViewCategory" >
+            android:parentActivityName=".ViewCategoryActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.flores.nico.wallet.ViewCategory" />
+        </activity>
+        <activity
+            android:name=".ViewMovementActivity"
+            android:label="@string/title_activity_view_movement"
+            android:parentActivityName=".HomeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.flores.nico.wallet.HomeActivity" />
         </activity>
     </application>
 

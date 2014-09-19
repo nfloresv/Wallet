@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.flores.nico.wallet.ViewCategory" >
+    tools:context="com.flores.nico.wallet.ViewCategoryActivity" >
 
     <item android:id="@+id/action_view_category_edit_category"
           android:title="@string/action_view_category_activity_edit"
