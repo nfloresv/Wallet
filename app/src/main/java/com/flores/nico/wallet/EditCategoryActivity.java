@@ -51,6 +51,8 @@ public class EditCategoryActivity extends Activity {
 
             categoryName.setText(category.getName());
             categoryDescription.setText(category.getDescription());
+        } else {
+            finish();
         }
     }
 

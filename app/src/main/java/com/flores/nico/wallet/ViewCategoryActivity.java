@@ -37,7 +37,6 @@ public class ViewCategoryActivity extends Activity {
             categoryName.setText(category.getName());
             categoryDescription.setText(category.getDescription());
         } else {
-            // Send error toast
             finish();
         }
     }

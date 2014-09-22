@@ -51,7 +51,6 @@ public class ViewMovementActivity extends Activity {
             movementDescription.setText(movement.getDescription());
             movementImage.setText(movement.getFilePath());
         } else {
-            // Send error toast
             finish();
         }
     }

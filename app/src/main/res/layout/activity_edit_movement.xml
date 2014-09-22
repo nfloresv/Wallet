@@ -55,13 +55,16 @@
             android:text="@string/movement_fragment_tv_date"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:layout_marginTop="10dp"/>
-        <DatePicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:labelFor="@+id/editMovementActivityInputDatePicker"/>
+        <EditText
             android:id="@+id/editMovementActivityInputDatePicker"
-            android:calendarViewShown="false"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
         <TextView
             android:layout_width="match_parent"

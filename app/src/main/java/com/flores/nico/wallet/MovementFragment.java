@@ -1,6 +1,9 @@
 package com.flores.nico.wallet;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -28,6 +31,7 @@ import com.flores.nico.database.Movement;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -45,6 +49,7 @@ public class MovementFragment extends Fragment {
     private CategorySpinnerAdapter movementCategoryArray;
     private ArrayAdapter<CharSequence> movementTypeArray;
     private Uri fileUri;
+    private static Date movementDate;
 
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 0x00011;
 
@@ -82,11 +87,19 @@ public class MovementFragment extends Fragment {
         Spinner movementCategory = (Spinner) layout.findViewById(R.id.movementFragmentInputCategory);
         movementCategory.setAdapter(movementCategoryArray);
 
+        EditText datepicker = (EditText) layout.findViewById(R.id.movementFragmentInputDatePicker);
+        datepicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+                showDatePicker();
+            }
+        });
+
         Button saveButton = (Button) layout.findViewById(R.id.movementFragmentBtnSave);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
-                saveMovement(view);
+                saveMovement();
             }
         });
         return layout;
@@ -143,7 +156,6 @@ public class MovementFragment extends Fragment {
         EditText movementAmount = (EditText) getActivity().findViewById(R.id.movementFragmentInputAmount);
         Spinner movementCategory = (Spinner) getActivity().findViewById(R.id.movementFragmentInputCategory);
         Spinner movementType = (Spinner) getActivity().findViewById(R.id.movementFragmentInputType);
-        DatePicker movementDate = (DatePicker) getActivity().findViewById(R.id.movementFragmentInputDatePicker);
         EditText movementDescription = (EditText) getActivity().findViewById(R.id.movementFragmentInputDescription);
 
         if (!movementAmount.getText().toString().isEmpty()) {
@@ -153,15 +165,14 @@ public class MovementFragment extends Fragment {
             String array_type = getResources().getStringArray(R.array
                     .movement_fragment_spinner_movement_type)[0];
             boolean type = array_type.equalsIgnoreCase(selected_type);
-            Date date = new Date(movementDate.getCalendarView().getDate());
             String description = movementDescription.getText().toString();
 
             Movement movement;
             if (fileUri != null) {
-                movement = new Movement(amount, category, type, date, description,
+                movement = new Movement(amount, category, type, movementDate, description,
                         fileUri.getPath());
             } else {
-                movement = new Movement(amount, category, type, date, description);
+                movement = new Movement(amount, category, type, movementDate, description);
             }
             movement.save();
 
@@ -208,7 +219,7 @@ public class MovementFragment extends Fragment {
         return null;
     }
 
-    public void saveMovement(View view) {
+    public void saveMovement() {
         Context context = getActivity().getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
         String message;
@@ -225,4 +236,30 @@ public class MovementFragment extends Fragment {
         toast.show();
     }
 
+    public void showDatePicker() {
+        DialogFragment dialogFragment = new DatePickerFragment();
+        dialogFragment.show(getFragmentManager(), "datepicker");
+    }
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog
+            .OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog (Bundle savedInstanceState) {
+            Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        @Override
+        public void onDateSet (DatePicker datePicker, int year, int month, int day) {
+            movementDate = new Date(datePicker.getCalendarView().getDate());
+            EditText picker = (EditText) getActivity().findViewById(R.id.movementFragmentInputDatePicker);
+            picker.setText(String.format("%1$ta %1$td %1$tb %1$tY", movementDate));
+        }
+
+    }
 }

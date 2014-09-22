@@ -1,6 +1,9 @@
 package com.flores.nico.wallet;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,8 +30,8 @@ public class EditMovementActivity extends Activity {
     private EditText movementAmount;
     private Spinner movementType;
     private Spinner movementCategory;
-    private DatePicker movementDatePicker;
     private EditText movementDescription;
+    private static Date movementDate;
 
     public static final String MOVEMENT_ID = "com.flores.nico.wallet.MOVEMENT_ID";
 
@@ -48,7 +51,14 @@ public class EditMovementActivity extends Activity {
         CategorySpinnerAdapter movementCategoryArray = new CategorySpinnerAdapter(this,
                 R.layout.category_spinner_adapter, movementCategories);
         movementCategory.setAdapter(movementCategoryArray);
-        movementDatePicker = (DatePicker) findViewById(R.id.editMovementActivityInputDatePicker);
+        EditText movementDatePicker = (EditText) findViewById(R.id
+                .editMovementActivityInputDatePicker);
+        movementDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view) {
+                showDatePicker();
+            }
+        });
         movementDescription = (EditText) findViewById(R.id.editMovementActivityInputDescription);
 
         Button saveButton = (Button) findViewById(R.id.editMovementActivityBtnSave);
@@ -70,14 +80,10 @@ public class EditMovementActivity extends Activity {
             }
             int position = movementCategoryArray.getPosition(movement.getCategory());
             movementCategory.setSelection(position);
-            Date movementDate = movement.getMovement_date();
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(movementDate);
-            movementDatePicker.updateDate(calendar.get(Calendar.YEAR),
-                    calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+            movementDate = movement.getMovement_date();
+            movementDatePicker.setText(String.format("%1$ta %1$td %1$tb %1$tY", movementDate));
             movementDescription.setText(movement.getDescription());
         } else {
-            // Send error toast
             finish();
         }
     }
@@ -113,14 +119,13 @@ public class EditMovementActivity extends Activity {
             String array_type = getResources().getStringArray(R.array
                     .movement_fragment_spinner_movement_type)[0];
             boolean type = array_type.equalsIgnoreCase(selected_type);
-            Date date = new Date(movementDatePicker.getCalendarView().getDate());
             String description = movementDescription.getText().toString();
 
             Movement movement = Movement.findById(Movement.class, movement_id);
             movement.setAmount(amount);
             movement.setCategory(category);
             movement.setIncome(type);
-            movement.setMovement_date(date);
+            movement.setMovement_date(movementDate);
             movement.setDescription(description);
             movement.save();
 
@@ -133,5 +138,35 @@ public class EditMovementActivity extends Activity {
             toast = Toast.makeText(getApplicationContext(), message, duration);
         }
         toast.show();
+    }
+
+    public void showDatePicker() {
+        DialogFragment dialogFragment = new DatePickerFragment();
+        dialogFragment.show(getFragmentManager(), "datepicker");
+    }
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog
+            .OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog (Bundle savedInstanceState) {
+            Calendar calendar = Calendar.getInstance();
+            if (movementDate != null) {
+                calendar.setTime(movementDate);
+            }
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        @Override
+        public void onDateSet (DatePicker datePicker, int year, int month, int day) {
+            movementDate = new Date(datePicker.getCalendarView().getDate());
+            EditText picker = (EditText) getActivity().findViewById(R.id.editMovementActivityInputDatePicker);
+            picker.setText(String.format("%1$ta %1$td %1$tb %1$tY", movementDate));
+        }
+
     }
 }
