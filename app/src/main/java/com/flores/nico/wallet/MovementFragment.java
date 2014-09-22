@@ -148,8 +148,7 @@ public class MovementFragment extends Fragment {
 
         if (!movementAmount.getText().toString().isEmpty()) {
             double amount = Double.parseDouble(movementAmount.getText().toString());
-            Category category = Category.find(Category.class, "name = ?",
-                    movementCategory.getSelectedItem().toString()).get(0);
+            Category category = (Category) movementCategory.getSelectedItem();
             String selected_type = movementType.getSelectedItem().toString();
             String array_type = getResources().getStringArray(R.array
                     .movement_fragment_spinner_movement_type)[0];
@@ -157,8 +156,13 @@ public class MovementFragment extends Fragment {
             Date date = new Date(movementDate.getCalendarView().getDate());
             String description = movementDescription.getText().toString();
 
-            Movement movement = new Movement(amount, category, type, date, description,
-                    fileUri.getPath());
+            Movement movement;
+            if (fileUri != null) {
+                movement = new Movement(amount, category, type, date, description,
+                        fileUri.getPath());
+            } else {
+                movement = new Movement(amount, category, type, date, description);
+            }
             movement.save();
 
             return true;

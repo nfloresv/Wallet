@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.flores.nico.wallet.ViewCategoryActivity" >
 
-    <item android:id="@+id/action_view_category_edit_category"
+    <item android:id="@+id/action_view_category_edit"
           android:title="@string/action_view_category_activity_edit"
           android:icon="@android:drawable/ic_menu_edit"
           android:showAsAction="ifRoom|withText" />

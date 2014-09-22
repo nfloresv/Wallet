@@ -68,7 +68,7 @@ public class ViewCategoryActivity extends Activity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
-        } else if (id == R.id.action_view_category_edit_category) {
+        } else if (id == R.id.action_view_category_edit) {
             Context context = getApplicationContext();
 
             Intent intent = new Intent(context, EditCategoryActivity.class);

@@ -84,6 +84,17 @@ public class CategorySpinnerAdapter extends ArrayAdapter<Category> {
         return row;
     }
 
+    @Override
+    public int getPosition (Category item) {
+        for (int i = 0; i < categories.size(); i++) {
+            Category category = categories.get(i);
+            if (category.getId() == item.getId()) {
+                return i;
+            }
+        }
+        return super.getPosition(item);
+    }
+
     private static class CategoryHolder {
         private TextView categoryName;
         private TextView categoryDescription;

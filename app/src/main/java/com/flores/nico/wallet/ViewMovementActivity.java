@@ -2,6 +2,7 @@ package com.flores.nico.wallet;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -70,6 +71,13 @@ public class ViewMovementActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            return true;
+        } else if (id == R.id.action_view_movement_edit) {
+            Context context = getApplicationContext();
+
+            Intent intent = new Intent(context, EditMovementActivity.class);
+            intent.putExtra(EditMovementActivity.MOVEMENT_ID, movement_id);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);

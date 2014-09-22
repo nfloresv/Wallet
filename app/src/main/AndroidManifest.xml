@@ -54,7 +54,7 @@
             android:parentActivityName=".ViewCategoryActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.flores.nico.wallet.ViewCategory" />
+                android:value="com.flores.nico.wallet.ViewCategoryActivity" />
         </activity>
         <activity
             android:name=".ViewMovementActivity"
@@ -63,6 +63,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.flores.nico.wallet.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".EditMovementActivity"
+            android:label="@string/title_activity_edit_movement"
+            android:parentActivityName=".ViewMovementActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.flores.nico.wallet.ViewMovementActivity" />
         </activity>
     </application>
 

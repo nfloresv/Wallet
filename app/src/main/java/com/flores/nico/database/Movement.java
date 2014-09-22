@@ -19,6 +19,16 @@ public class Movement extends SugarRecord<Movement> {
     }
 
     public Movement (double amount, Category category, boolean income, Date movement_date,
+                     String description) {
+        this.amount = amount;
+        this.category = category;
+        this.income = income;
+        this.movement_date = movement_date;
+        this.description = description;
+        this.filePath = "";
+    }
+
+    public Movement (double amount, Category category, boolean income, Date movement_date,
                      String description, String filePath) {
         this.amount = amount;
         this.category = category;

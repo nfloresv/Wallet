@@ -38,7 +38,7 @@ public class EditCategoryActivity extends Activity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
-                saveCategory(view);
+                saveCategory();
             }
         });
 
@@ -75,7 +75,7 @@ public class EditCategoryActivity extends Activity {
     }
 
 
-    public void saveCategory(View view) {
+    public void saveCategory() {
         Toast toast;
         String message;
         int duration = Toast.LENGTH_SHORT;
