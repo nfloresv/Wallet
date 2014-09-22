@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -25,15 +24,8 @@ public class ViewCategoryActivity extends Activity {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        if (savedInstanceState != null) {
-            category_id = savedInstanceState.getLong(CATEGORY_ID, 0);
-            Log.i("Category_id", Long.toString(category_id));
-            Log.i("saved instance", "Not null");
-        } else {
-            Intent intent = getIntent();
-            category_id = intent.getLongExtra(CATEGORY_ID, 0);
-            Log.i("Category_id", Long.toString(category_id));
-        }
+        Intent intent = getIntent();
+        category_id = intent.getLongExtra(CATEGORY_ID, 0);
 
         Category category = Category.findById(Category.class, category_id);
         if (category_id != 0 || category != null) {
@@ -45,13 +37,10 @@ public class ViewCategoryActivity extends Activity {
             categoryName.setText(category.getName());
             categoryDescription.setText(category.getDescription());
         } else {
-            Log.i("Category_id", Long.toString(category_id));
-            Log.i("category", "null");
             // Send error toast
             finish();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,6 +72,5 @@ public class ViewCategoryActivity extends Activity {
     protected void onSaveInstanceState (Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putLong(CATEGORY_ID, category_id);
-        Log.i("saved instance", "saved");
     }
 }

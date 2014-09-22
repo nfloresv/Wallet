@@ -126,6 +126,8 @@ public class EditMovementActivity extends Activity {
 
             message = getString(R.string.toast_edit_movement_activity_successful_update);
             toast = Toast.makeText(getApplicationContext(), message, duration);
+
+            finish();
         } else {
             message = getString(R.string.toast_movement_fragment_movement_error);
             toast = Toast.makeText(getApplicationContext(), message, duration);
