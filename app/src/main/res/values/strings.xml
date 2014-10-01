@@ -12,6 +12,7 @@
     <string name="title_activity_new_category">New Category</string>
     <string name="title_activity_view_movement">Movement</string>
     <string name="title_activity_edit_movement">EditMovementActivity</string>
+    <string name="title_debt_fragment">Debt</string>
 
     <!-- Menu Items -->
     <string name="action_settings">Settings</string>
@@ -61,5 +62,9 @@
     <string name="dashboard_fragment_tv_account_outcome">Account Outcome</string>
     <string name="edit_category_activity_tv_name">Category Name</string>
     <string name="edit_category_activity_tv_description">Category Description</string>
+    <string name="debt_fragment_tv_amount">Amount</string>
+    <string name="debt_fragment_tv_reminder">Reminder</string>
+    <string name="debt_fragment_tv_description">Description</string>
+    <string name="debt_fragment_btn_save">Save</string>
 
 </resources>

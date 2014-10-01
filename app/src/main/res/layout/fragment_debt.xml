@@ -1,0 +1,65 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.flores.nico.wallet.MovementFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/debt_fragment_tv_amount"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:labelFor="@+id/debtFragmentInputAmount"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/debtFragmentInputAmount"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/debt_fragment_tv_reminder"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:labelFor="@+id/debtFragmentInputReminder"/>
+    <EditText
+        android:id="@+id/debtFragmentInputReminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/debt_fragment_tv_description"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:labelFor="@+id/debtFragmentInputDescription"
+        android:layout_marginTop="10dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:inputType="text|textAutoCorrect|textMultiLine|textCapSentences"
+        android:ems="10"
+        android:id="@+id/debtFragmentInputDescription"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/debtFragmentBtnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/debt_fragment_btn_save"
+        android:layout_marginTop="10dp"/>
+
+    </LinearLayout>

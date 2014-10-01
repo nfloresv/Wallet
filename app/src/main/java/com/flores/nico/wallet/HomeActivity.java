@@ -62,15 +62,6 @@ public class HomeActivity extends Activity {
         } else {
             selectItem(1);
         }
-        /*if (actualFragment == null) {
-            actualFragment = new MovementFragment();
-            fragmentId = 1;
-        }
-
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, actualFragment)
-                .commit();*/
 
         final ActionBar actionBar = getActionBar();
         mTitle = mDrawerTitle = getTitle();
@@ -204,6 +195,10 @@ public class HomeActivity extends Activity {
             actualFragment = new CategoryFragment();
             fragmentId = position;
             mTitle = getString(R.string.title_category_fragment);
+        } else if (position == 5) {
+            actualFragment = new DebtFragment();
+            fragmentId = position;
+            mTitle = getString(R.string.title_debt_fragment);
         }
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()

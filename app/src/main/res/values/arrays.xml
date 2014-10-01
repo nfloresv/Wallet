@@ -5,6 +5,7 @@
         <item>Last Movements</item>
         <item>Dashboard</item>
         <item>Categories</item>
+        <item>Debts</item>
     </string-array>
     <string-array name="movement_fragment_spinner_movement_type">
         <item>Income</item>
