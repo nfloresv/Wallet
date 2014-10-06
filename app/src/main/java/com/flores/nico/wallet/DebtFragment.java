@@ -107,17 +107,22 @@ public class DebtFragment extends Fragment {
         Context context = getActivity().getApplicationContext();
 
         EditText debtAmount = (EditText) getActivity().findViewById(R.id.debtFragmentInputAmount);
+        EditText debtReceiver = (EditText) getActivity().findViewById(R.id
+                .debtFragmentInputReceiver);
         EditText debtDescription = (EditText) getActivity().findViewById(R.id
                 .debtFragmentInputDescription);
-        if (debtAmount.getText().length() > 0) {
+        if (debtAmount.getText().length() > 0 && debtReceiver.getText().length() > 0) {
             double amount = Double.parseDouble(debtAmount.getText().toString());
+            String receiver = debtReceiver.getText().toString();
             String description = debtDescription.getText().toString();
 
-            Debt debt = new Debt(amount, false, reminderDate, description);
+            Debt debt = new Debt(amount, false, receiver, reminderDate, description);
             debt.save();
 
+            /* TODO check if reminderDate is not null o past */
             alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             Intent intent = new Intent(context, AlarmReceiver.class);
+            intent.putExtra(AlarmReceiver.DEBT_ID, debt.getId());
             alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
 
             Calendar calendar = Calendar.getInstance();

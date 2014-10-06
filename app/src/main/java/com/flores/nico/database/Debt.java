@@ -10,15 +10,17 @@ import java.util.Date;
 public class Debt extends SugarRecord<Debt> {
     private double amount;
     private boolean income;
+    private String receiver;
     private Date reminder;
     private String description;
 
     public Debt () {
     }
 
-    public Debt (double amount, boolean income, Date reminder, String description) {
+    public Debt (double amount, boolean income, String receiver, Date reminder, String description) {
         this.amount = amount;
         this.income = income;
+        this.receiver = receiver;
         this.reminder = reminder;
         this.description = description;
     }
@@ -37,6 +39,14 @@ public class Debt extends SugarRecord<Debt> {
 
     public void setIncome (boolean income) {
         this.income = income;
+    }
+
+    public String getReceiver () {
+        return receiver;
+    }
+
+    public void setReceiver (String receiver) {
+        this.receiver = receiver;
     }
 
     public Date getReminder () {

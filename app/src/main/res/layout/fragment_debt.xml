@@ -24,6 +24,20 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/debt_fragment_tv_receiver"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:labelFor="@+id/debtFragmentInputReceiver"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text|textAutoCorrect"
+        android:ems="10"
+        android:id="@+id/debtFragmentInputReceiver"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/debt_fragment_tv_reminder"
         android:textStyle="bold"
         android:textSize="20sp"
