@@ -1,18 +1,26 @@
 package com.flores.nico.wallet;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.flores.nico.database.Debt;
+import com.flores.nico.utils.AlarmReceiver;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -26,6 +34,8 @@ import java.util.Date;
  */
 public class DebtFragment extends Fragment {
     private static Date reminderDate;
+    private AlarmManager alarmMgr;
+    private PendingIntent alarmIntent;
 
     public static DebtFragment newInstance() {
         return new DebtFragment();
@@ -91,6 +101,11 @@ public class DebtFragment extends Fragment {
     }
 
     private void saveDebt() {
+        Toast toast;
+        int duration = Toast.LENGTH_SHORT;
+        String message;
+        Context context = getActivity().getApplicationContext();
+
         EditText debtAmount = (EditText) getActivity().findViewById(R.id.debtFragmentInputAmount);
         EditText debtDescription = (EditText) getActivity().findViewById(R.id
                 .debtFragmentInputDescription);
@@ -100,6 +115,33 @@ public class DebtFragment extends Fragment {
 
             Debt debt = new Debt(amount, false, reminderDate, description);
             debt.save();
+
+            alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(context, AlarmReceiver.class);
+            alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(reminderDate);
+            calendar.set(Calendar.HOUR_OF_DAY, 9);
+
+//            alarmMgr.set(AlarmManager.RTC, calendar.getTimeInMillis(), alarmIntent);
+            alarmMgr.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 30
+                    * 1000, alarmIntent);
+
+            resetView();
+
+            message = context.getString(R.string.toast_debt_fragment_debt_saved);
+        } else {
+            message = context.getString(R.string.toast_debt_fragment_debt_error);
         }
+        toast = Toast.makeText(context, message, duration);
+        toast.show();
+    }
+
+    private void resetView() {
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, new DebtFragment())
+                .commit();
     }
 }

@@ -72,6 +72,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.flores.nico.wallet.ViewMovementActivity" />
         </activity>
+
+        <receiver android:name="com.flores.nico.utils.AlarmReceiver" />
     </application>
 
 </manifest>

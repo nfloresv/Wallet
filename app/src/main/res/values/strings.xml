@@ -46,6 +46,8 @@
     <string name="toast_category_fragment_category_error">Please provide a name</string>
     <string name="toast_edit_movement_activity_successful_update">Movement correctly
         updated</string>
+    <string name="toast_debt_fragment_debt_saved">Debt saved</string>
+    <string name="toast_debt_fragment_debt_error">Please provide an amount</string>
 
     <!-- Views Text -->
     <string name="login_activity_tv_login">Login</string>
