@@ -1,79 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.flores.nico.wallet" >
+<manifest
+    package="com.flores.nico.wallet"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-feature
         android:name="android.hardware.Camera"
-        android:required="false" />
+        android:required="false"/>
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="DATABASE"
-            android:value="wallet.db" />
+            android:value="wallet.db"/>
         <meta-data
             android:name="VERSION"
-            android:value="1" />
+            android:value="1"/>
         <meta-data
             android:name="QUERY_LOG"
-            android:value="true" />
+            android:value="true"/>
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
-            android:value="com.flores.nico" />
+            android:value="com.flores.nico"/>
 
         <activity
-            android:name=".HomeActivity"
-            android:label="@string/app_name" >
+            android:name="com.flores.nico.wallet.HomeActivity"
+            android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" >
+            android:name="com.flores.nico.wallet.LoginActivity"
+            android:label="@string/title_activity_login">
         </activity>
         <activity
-            android:name=".ViewCategoryActivity"
+            android:name="com.flores.nico.wallet.ViewCategoryActivity"
             android:label="@string/title_activity_view_category"
-            android:parentActivityName=".HomeActivity" >
+            android:parentActivityName="com.flores.nico.wallet.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.flores.nico.wallet.HomeActivity" />
+                android:value="com.flores.nico.wallet.HomeActivity"/>
         </activity>
         <activity
-            android:name=".EditCategoryActivity"
+            android:name="com.flores.nico.wallet.EditCategoryActivity"
             android:label="@string/title_activity_new_category"
-            android:parentActivityName=".ViewCategoryActivity" >
+            android:parentActivityName="com.flores.nico.wallet.ViewCategoryActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.flores.nico.wallet.ViewCategoryActivity" />
+                android:value="com.flores.nico.wallet.ViewCategoryActivity"/>
         </activity>
         <activity
-            android:name=".ViewMovementActivity"
+            android:name="com.flores.nico.wallet.ViewMovementActivity"
             android:label="@string/title_activity_view_movement"
-            android:parentActivityName=".HomeActivity" >
+            android:parentActivityName="com.flores.nico.wallet.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.flores.nico.wallet.HomeActivity" />
+                android:value="com.flores.nico.wallet.HomeActivity"/>
         </activity>
         <activity
-            android:name=".EditMovementActivity"
+            android:name="com.flores.nico.wallet.EditMovementActivity"
             android:label="@string/title_activity_edit_movement"
-            android:parentActivityName=".ViewMovementActivity" >
+            android:parentActivityName="com.flores.nico.wallet.ViewMovementActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.flores.nico.wallet.ViewMovementActivity" />
+                android:value="com.flores.nico.wallet.ViewMovementActivity"/>
         </activity>
 
-        <receiver android:name="com.flores.nico.utils.AlarmReceiver" />
+        <receiver android:name="com.flores.nico.utils.AlarmReceiver"/>
+
+        <activity
+            android:name="com.flores.nico.wallet.SigninActivity"
+            android:label="@string/title_activity_signin"
+            android:parentActivityName="com.flores.nico.wallet.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.flores.nico.wallet.HomeActivity"/>
+        </activity>
     </application>
 
 </manifest>

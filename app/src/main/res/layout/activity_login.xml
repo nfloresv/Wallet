@@ -1,78 +1,79 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.flores.nico.wallet.LoginActivity">
-
-    <TextView
-        android:text="@string/login_activity_tv_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:id="@+id/loginActivityTvLogin"/>
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                tools:context="com.flores.nico.wallet.LoginActivity">
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/loginActivityLlEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/loginActivityTvLogin"
         android:layout_alignParentStart="true"
-        android:id="@+id/loginActivityLlEmail">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:labelFor="@+id/loginActivityInputEmail"
             android:text="@string/login_activity_tv_email"
-            android:textStyle="bold"
-            android:labelFor="@+id/loginActivityInputEmail"/>
+            android:textStyle="bold"/>
 
         <EditText
+            android:id="@+id/loginActivityInputEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/loginActivityInputEmail"
             android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textEmailAddress"
             android:textStyle="bold"/>
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/loginActivityLlPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/loginActivityLlPassword"
-        android:layout_below="@+id/loginActivityLlEmail"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp">
+        android:layout_below="@+id/loginActivityLlEmail"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:labelFor="@+id/loginActivityInputPassword"
             android:text="@string/login_activity_tv_password"
-            android:textStyle="bold"
-            android:labelFor="@+id/loginActivityInputPassword"/>
+            android:textStyle="bold"/>
 
         <EditText
+            android:id="@+id/loginActivityInputPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:layout_weight="1"
             android:ems="10"
-            android:id="@+id/loginActivityInputPassword"
-            android:layout_weight="1"/>
+            android:inputType="textPassword"/>
     </LinearLayout>
 
     <Button
+        android:id="@+id/loginActivityBtnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_activity_tv_login"
-        android:layout_below="@+id/loginActivityLlPassword"
         android:layout_alignEnd="@+id/loginActivityLlPassword"
-        android:onClick="login"
-        android:layout_marginTop="10dp"/>
+        android:layout_below="@+id/loginActivityLlPassword"
+        android:layout_marginTop="10dp"
+        android:onClick="loginActivityLogin"
+        android:text="@string/login_activity_bt_login"/>
+
+    <Button
+        android:id="@+id/loginActivityBtnSignin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/loginActivityBtnLogin"
+        android:onClick="loginActivitySignin"
+        android:text="@string/signin_activity_btn_signin"/>
 
 </RelativeLayout>

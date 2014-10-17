@@ -14,6 +14,7 @@ import android.widget.Toast;
 public class LoginActivity extends Activity {
     public static final String USER_EMAIL = "com.flores.nico.wallet.EMAIL";
     public static final String USER_PASSWORD = "com.flores.nico.wallet.PASSWORD";
+    public static final int SIGNIN_ACTIVITY_REQUEST_CODE = 0x02;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +41,25 @@ public class LoginActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onActivityResult (int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SIGNIN_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Intent intent = new Intent(this, HomeActivity.class);
+                intent.putExtras(data);
+
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        }
+    }
+
     private boolean isEmailValid(CharSequence email) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-    public void login(View view) {
+    public void loginActivityLogin (View view) {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
 
@@ -65,6 +80,8 @@ public class LoginActivity extends Activity {
             intent.putExtra(USER_EMAIL, emailText);
             intent.putExtra(USER_PASSWORD, passwordText);
 
+            /*TODO use volley to login*/
+            /*TODO show loading dialog*/
             setResult(RESULT_OK, intent);
             finish();
         }
@@ -78,5 +95,10 @@ public class LoginActivity extends Activity {
             Toast toast = Toast.makeText(context, message, duration);
             toast.show();
         }
+    }
+
+    public void loginActivitySignin (View view) {
+        Intent intent = new Intent(this, SigninActivity.class);
+        startActivityForResult(intent, SIGNIN_ACTIVITY_REQUEST_CODE);
     }
 }

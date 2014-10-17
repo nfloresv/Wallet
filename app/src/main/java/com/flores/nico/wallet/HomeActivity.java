@@ -24,6 +24,8 @@ import com.flores.nico.utils.Initializer;
 
 
 public class HomeActivity extends Activity {
+    public static final int LOGIN_ACTIVITY_REQUEST_CODE = 0x01;
+    private static final String FRAGMENT_CODE = "com.flores.nico.wallet.ACTUAL_FRAGMENT";
     private Fragment actualFragment;
     private int fragmentId;
     private ListView mDrawerList;
@@ -32,9 +34,6 @@ public class HomeActivity extends Activity {
     private ActionBarDrawerToggle mDrawerToggle;
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
-
-    private static final String FRAGMENT_CODE = "com.flores.nico.wallet.ACTUAL_FRAGMENT";
-    public static final int LOGIN_ACTIVITY_REQUEST_CODE = 0x00001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +137,8 @@ public class HomeActivity extends Activity {
             if (resultCode == RESULT_OK) {
                 String emailText = data.getStringExtra(LoginActivity.USER_EMAIL);
                 String passwordText = data.getStringExtra(LoginActivity.USER_PASSWORD);
+                String firstNameText = data.getStringExtra(SigninActivity.USER_FIRST_NAME);
+                String lastNameText = data.getStringExtra(SigninActivity.USER_LAST_NAME);
 
                 String[] sectionsList = getResources().getStringArray(R.array.drawer_section_array);
                 String[] tmp = new String[sectionsList.length + 1];
@@ -147,7 +148,7 @@ public class HomeActivity extends Activity {
                 mDrawerList.setAdapter(new ArrayAdapter<String>(this,
                         android.R.layout.simple_list_item_1, tmp));
 
-                credentials.setLoginData(emailText, passwordText);
+                credentials.setLoginData(emailText, passwordText, firstNameText, lastNameText);
             }
         }
     }
@@ -168,14 +169,6 @@ public class HomeActivity extends Activity {
     protected void onSaveInstanceState (Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(FRAGMENT_CODE, fragmentId);
-    }
-
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        public void onItemClick(AdapterView parent, View view, int position, long id) {
-            selectItem(position);
-            mDrawerList.setItemChecked(position, true);
-            mDrawerLayout.closeDrawer(mDrawerList);
-        }
     }
 
     private void selectItem (int position) {
@@ -205,5 +198,13 @@ public class HomeActivity extends Activity {
                 .replace(R.id.container, actualFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
+    }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        public void onItemClick (AdapterView parent, View view, int position, long id) {
+            selectItem(position);
+            mDrawerList.setItemChecked(position, true);
+            mDrawerLayout.closeDrawer(mDrawerList);
+        }
     }
 }

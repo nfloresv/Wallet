@@ -43,23 +43,21 @@ import java.util.List;
  * to handle interaction events.
  * Use the {@link MovementFragment#newInstance} factory method to
  * create an instance of this fragment.
- *
  */
 public class MovementFragment extends Fragment {
+    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 0x03;
+    private static Date movementDate;
     private CategorySpinnerAdapter movementCategoryArray;
     private ArrayAdapter<CharSequence> movementTypeArray;
     private Uri fileUri;
-    private static Date movementDate;
 
-    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 0x00011;
-
-    public static MovementFragment newInstance() {
+    public static MovementFragment newInstance () {
         MovementFragment fragment = new MovementFragment();
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
@@ -75,8 +73,8 @@ public class MovementFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView (LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_movement, container, false);
 
@@ -152,7 +150,7 @@ public class MovementFragment extends Fragment {
         }
     }
 
-    private boolean createMovement() {
+    private boolean createMovement () {
         EditText movementAmount = (EditText) getActivity().findViewById(R.id.movementFragmentInputAmount);
         Spinner movementCategory = (Spinner) getActivity().findViewById(R.id.movementFragmentInputCategory);
         Spinner movementType = (Spinner) getActivity().findViewById(R.id.movementFragmentInputType);
@@ -182,7 +180,7 @@ public class MovementFragment extends Fragment {
         }
     }
 
-    private void resetView() {
+    private void resetView () {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, new MovementFragment())
@@ -219,7 +217,7 @@ public class MovementFragment extends Fragment {
         return null;
     }
 
-    public void saveMovement() {
+    public void saveMovement () {
         Context context = getActivity().getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
         String message;
@@ -236,7 +234,7 @@ public class MovementFragment extends Fragment {
         toast.show();
     }
 
-    public void showDatePicker() {
+    public void showDatePicker () {
         DialogFragment dialogFragment = new DatePickerFragment();
         dialogFragment.show(getFragmentManager(), "datepicker");
     }
