@@ -1,6 +1,7 @@
 package com.flores.nico.database;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 
 import java.util.Date;
 
@@ -8,6 +9,19 @@ import java.util.Date;
  * Created by nicoflores on 03-09-14.
  */
 public class Movement extends SugarRecord<Movement> {
+    // Params Name
+    @Ignore
+    public static final String SERIALIZED_AMOUNT = "amount";
+    @Ignore
+    public static final String SERIALIZED_CATEGORY = "category";
+    @Ignore
+    public static final String SERIALIZED_COMMENT = "coment";
+    @Ignore
+    public static final String SERIALIZED_DATE = "date";
+    @Ignore
+    public static final String SERIALIZED_INCOME = "isExpense";
+
+    // Fields
     private double amount;
     private Category category;
     private boolean income;
