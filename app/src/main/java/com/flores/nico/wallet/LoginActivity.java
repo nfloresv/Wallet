@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class LoginActivity extends Activity {
     public static final String USER_EMAIL = "com.flores.nico.wallet.EMAIL";
     public static final String USER_PASSWORD = "com.flores.nico.wallet.PASSWORD";
-    public static final int SIGNIN_ACTIVITY_REQUEST_CODE = 0x02;
+    public static final int SIGN_IN_ACTIVITY_REQUEST_CODE = 0x02;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class LoginActivity extends Activity {
     @Override
     public void onActivityResult (int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SIGNIN_ACTIVITY_REQUEST_CODE) {
+        if (requestCode == SIGN_IN_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 Intent intent = new Intent(this, HomeActivity.class);
                 intent.putExtras(data);
@@ -97,8 +97,8 @@ public class LoginActivity extends Activity {
         }
     }
 
-    public void loginActivitySignin (View view) {
-        Intent intent = new Intent(this, SigninActivity.class);
-        startActivityForResult(intent, SIGNIN_ACTIVITY_REQUEST_CODE);
+    public void loginActivitySignIn (View view) {
+        Intent intent = new Intent(this, SignInActivity.class);
+        startActivityForResult(intent, SIGN_IN_ACTIVITY_REQUEST_CODE);
     }
 }

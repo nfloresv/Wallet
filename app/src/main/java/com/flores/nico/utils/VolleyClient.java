@@ -44,7 +44,7 @@ public class VolleyClient {
     }
 
     /* TODO Maybe the generic is not necessary */
-    public void signin (String email, String first_name, String last_name, String password,
+    public void signIn (String email, String first_name, String last_name, String password,
                         Response.Listener<JSONObject> successListener, Response.ErrorListener errorListener) {
         Map<String, String> params = new HashMap<String, String>(4);
         params.put(SERIALIZED_EMAIL, email);

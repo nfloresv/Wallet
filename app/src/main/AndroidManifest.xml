@@ -77,7 +77,7 @@
         <receiver android:name="com.flores.nico.utils.AlarmReceiver"/>
 
         <activity
-            android:name="com.flores.nico.wallet.SigninActivity"
+            android:name=".SignInActivity"
             android:label="@string/title_activity_signin"
             android:parentActivityName="com.flores.nico.wallet.HomeActivity">
             <meta-data

@@ -6,45 +6,45 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="com.flores.nico.wallet.SigninActivity">
+                tools:context="com.flores.nico.wallet.SignInActivity">
 
     <TextView
-        android:id="@+id/signinActivityFirstNamTv"
+        android:id="@+id/signInActivityFirstNamTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:labelFor="@+id/signinActivityInputFirstName"
-        android:text="@string/signin_activity_tv_first_name"
+        android:labelFor="@+id/signInActivityInputFirstName"
+        android:text="@string/sign_in_activity_tv_first_name"
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/signinActivityInputFirstName"
+        android:id="@+id/signInActivityInputFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/signinActivityFirstNamTv"
+        android:layout_toEndOf="@+id/signInActivityFirstNamTv"
         android:ems="10"
         android:inputType="textPersonName"/>
 
     <TextView
-        android:id="@+id/signinActivityLastNameTv"
+        android:id="@+id/signInActivityLastNameTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/signinActivityInputFirstName"
-        android:labelFor="@+id/signinActivityInputLastName"
-        android:text="@string/signin_activity_tv_last_name"
+        android:layout_below="@+id/signInActivityInputFirstName"
+        android:labelFor="@+id/signInActivityInputLastName"
+        android:text="@string/sign_in_activity_tv_last_name"
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/signinActivityInputLastName"
+        android:id="@+id/signInActivityInputLastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/signinActivityLastNameTv"
-        android:layout_toEndOf="@+id/signinActivityLastNameTv"
+        android:layout_alignTop="@+id/signInActivityLastNameTv"
+        android:layout_toEndOf="@+id/signInActivityLastNameTv"
         android:ems="10"
         android:inputType="textPersonName"/>
 
@@ -52,18 +52,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/signinActivityInputLastName"
-        android:labelFor="@+id/signinActivityInputEmail"
+        android:layout_below="@+id/signInActivityInputLastName"
+        android:labelFor="@+id/signInActivityInputEmail"
         android:text="@string/login_activity_tv_email"
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/signinActivityInputEmail"
+        android:id="@+id/signInActivityInputEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/signinActivityInputLastName"
-        android:layout_below="@+id/signinActivityInputLastName"
+        android:layout_alignStart="@+id/signInActivityInputLastName"
+        android:layout_below="@+id/signInActivityInputLastName"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:textStyle="bold"/>
@@ -72,28 +72,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/signinActivityInputEmail"
-        android:labelFor="@+id/signinActivityInputPassword"
+        android:layout_below="@+id/signInActivityInputEmail"
+        android:labelFor="@+id/signInActivityInputPassword"
         android:text="@string/login_activity_tv_password"
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/signinActivityInputPassword"
+        android:id="@+id/signInActivityInputPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/signinActivityInputEmail"
-        android:layout_below="@+id/signinActivityInputEmail"
+        android:layout_alignStart="@+id/signInActivityInputEmail"
+        android:layout_below="@+id/signInActivityInputEmail"
         android:ems="10"
         android:inputType="textPassword"/>
 
     <Button
-        android:id="@+id/signinActivityBtnSignin"
+        android:id="@+id/signInActivityBtnSignin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/signinActivityInputPassword"
-        android:layout_below="@+id/signinActivityInputPassword"
-        android:onClick="signinActivitySignin"
-        android:text="@string/signin_activity_btn_signin"/>
+        android:layout_alignEnd="@+id/signInActivityInputPassword"
+        android:layout_below="@+id/signInActivityInputPassword"
+        android:onClick="signInActivitySignIn"
+        android:text="@string/sign_in_activity_btn_sign_in"/>
 
 </RelativeLayout>

@@ -36,7 +36,7 @@ public class HomeActivity extends Activity {
     private CharSequence mTitle;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -105,14 +105,14 @@ public class HomeActivity extends Activity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu (Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected (MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -131,14 +131,14 @@ public class HomeActivity extends Activity {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult (int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == LOGIN_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 String emailText = data.getStringExtra(LoginActivity.USER_EMAIL);
                 String passwordText = data.getStringExtra(LoginActivity.USER_PASSWORD);
-                String firstNameText = data.getStringExtra(SigninActivity.USER_FIRST_NAME);
-                String lastNameText = data.getStringExtra(SigninActivity.USER_LAST_NAME);
+                String firstNameText = data.getStringExtra(SignInActivity.USER_FIRST_NAME);
+                String lastNameText = data.getStringExtra(SignInActivity.USER_LAST_NAME);
 
                 String[] sectionsList = getResources().getStringArray(R.array.drawer_section_array);
                 String[] tmp = new String[sectionsList.length + 1];

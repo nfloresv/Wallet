@@ -10,21 +10,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-/* TODO correct Signin to SignIn*/
-public class SigninActivity extends Activity {
+public class SignInActivity extends Activity {
     public static final String USER_FIRST_NAME = "com.flores.nico.wallet.FIRST_NAME";
     public static final String USER_LAST_NAME = "com.flores.nico.wallet.LAST_NAME";
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signin);
+        setContentView(R.layout.activity_sign_in);
     }
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_signin, menu);
+        getMenuInflater().inflate(R.menu.menu_sign_in, menu);
         return true;
     }
 
@@ -43,20 +42,20 @@ public class SigninActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void signinActivitySignin (View view) {
+    public void signInActivitySignIn (View view) {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
 
-        EditText firstNameField = (EditText) findViewById(R.id.signinActivityInputFirstName);
+        EditText firstNameField = (EditText) findViewById(R.id.signInActivityInputFirstName);
         String firstNameText = firstNameField.getText().toString();
 
-        EditText lastNameField = (EditText) findViewById(R.id.signinActivityInputLastName);
+        EditText lastNameField = (EditText) findViewById(R.id.signInActivityInputLastName);
         String lastNameText = lastNameField.getText().toString();
 
-        EditText emailField = (EditText) findViewById(R.id.signinActivityInputEmail);
+        EditText emailField = (EditText) findViewById(R.id.signInActivityInputEmail);
         CharSequence emailText = emailField.getText().toString();
 
-        EditText passwordField = (EditText) findViewById(R.id.signinActivityInputPassword);
+        EditText passwordField = (EditText) findViewById(R.id.signInActivityInputPassword);
         String passwordText = passwordField.getText().toString();
 
         boolean validEmail = isEmailValid(emailText);

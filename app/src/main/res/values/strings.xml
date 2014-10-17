@@ -72,8 +72,8 @@
     <string name="debt_fragment_tv_reminder">Reminder</string>
     <string name="debt_fragment_tv_description">Description</string>
     <string name="debt_fragment_btn_save">Save</string>
-    <string name="signin_activity_tv_first_name">First Name</string>
-    <string name="signin_activity_tv_last_name">Last Name</string>
-    <string name="signin_activity_btn_signin">Sign In</string>
+    <string name="sign_in_activity_tv_first_name">First Name</string>
+    <string name="sign_in_activity_tv_last_name">Last Name</string>
+    <string name="sign_in_activity_btn_sign_in">Sign In</string>
 
 </resources>
