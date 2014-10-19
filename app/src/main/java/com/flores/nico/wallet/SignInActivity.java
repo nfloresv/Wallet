@@ -51,8 +51,8 @@ public class SignInActivity extends Activity {
     }
 
     public void signInActivitySignIn (View view) {
-        final Context context = getApplicationContext();
-        final int duration = Toast.LENGTH_SHORT;
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
 
         EditText firstNameField = (EditText) findViewById(R.id.signInActivityInputFirstName);
         String firstNameText = firstNameField.getText().toString();
@@ -69,39 +69,17 @@ public class SignInActivity extends Activity {
         boolean validEmail = isEmailValid(emailText);
 
         if (validEmail && !passwordText.isEmpty() && !firstNameText.isEmpty() && !lastNameText.isEmpty()) {
-            final Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             intent.putExtra(LoginActivity.USER_EMAIL, emailText);
             intent.putExtra(LoginActivity.USER_PASSWORD, passwordText);
             intent.putExtra(USER_FIRST_NAME, firstNameText);
             intent.putExtra(USER_LAST_NAME, lastNameText);
 
-            final ProgressDialog dialog = ProgressDialog.show(this, "",
+            ProgressDialog dialog = ProgressDialog.show(this, "",
                     getString(R.string.toast_progress_dialog_loading), true, false);
             VolleyClient client = VolleyClient.getInstance(context);
             client.signIn(emailText.toString(), firstNameText, lastNameText, passwordText,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse (JSONObject response) {
-                            /*TODO look what is the server response*/
-                            Log.d("JSON Success", response.toString());
-                            dialog.dismiss();
-                            String message = getString(R.string.toast_sign_in_activity_sign_in_successfully);
-                            Toast toast = Toast.makeText(context, message, duration);
-                            toast.show();
-                            setResult(RESULT_OK, intent);
-                            finish();
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse (VolleyError error) {
-                            /*TODO look what is the server response*/
-                            Log.d("JSON Error", error.toString());
-                            dialog.dismiss();
-                            String message = getString(R.string.toast_sign_in_activity_sign_in_error);
-                            Toast toast = Toast.makeText(context, message, duration);
-                            toast.show();
-                        }
-                    });
+                    getSuccessListener(intent, dialog), getErrorListener(dialog));
         } else if (!validEmail) {
             String message = getString(R.string.toast_login_activity_invalid_email);
             Toast toast = Toast.makeText(context, message, duration);
@@ -115,6 +93,40 @@ public class SignInActivity extends Activity {
             Toast toast = Toast.makeText(context, message, duration);
             toast.show();
         }
+    }
+
+    private Response.ErrorListener getErrorListener (final ProgressDialog dialog) {
+        final Context context = getApplicationContext();
+        final int duration = Toast.LENGTH_SHORT;
+        return new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse (VolleyError error) {
+                /*TODO look what is the server response*/
+                Log.d("JSON Error", error.toString());
+                dialog.dismiss();
+                String message = getString(R.string.toast_sign_in_activity_sign_in_error);
+                Toast toast = Toast.makeText(context, message, duration);
+                toast.show();
+            }
+        };
+    }
+
+    private Response.Listener<JSONObject> getSuccessListener (final Intent intent, final ProgressDialog dialog) {
+        final Context context = getApplicationContext();
+        final int duration = Toast.LENGTH_SHORT;
+        return new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse (JSONObject response) {
+                /*TODO look what is the server response*/
+                Log.d("JSON Success", response.toString());
+                dialog.dismiss();
+                String message = getString(R.string.toast_sign_in_activity_sign_in_successfully);
+                Toast toast = Toast.makeText(context, message, duration);
+                toast.show();
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        };
     }
 
     private boolean isEmailValid (CharSequence email) {

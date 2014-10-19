@@ -123,9 +123,11 @@ public class HomeActivity extends Activity {
         } else if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_logout) {
+            /*TODO clean database before logout*/
             boolean result = credentials.setLogout();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, LOGIN_ACTIVITY_REQUEST_CODE);
+            finish();
             return result;
         }
         return super.onOptionsItemSelected(item);

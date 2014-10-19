@@ -68,8 +68,8 @@ public class LoginActivity extends Activity {
     }
 
     public void loginActivityLogin (View view) {
-        final Context context = getApplicationContext();
-        final int duration = Toast.LENGTH_SHORT;
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
 
         EditText emailField = (EditText) findViewById(R.id.loginActivityInputEmail);
         CharSequence emailText = emailField.getText().toString();
@@ -80,34 +80,15 @@ public class LoginActivity extends Activity {
         boolean validEmail = isEmailValid(emailText);
 
         if (validEmail && !passwordText.isEmpty()) {
-            final Intent intent = new Intent(this, HomeActivity.class);
+            Intent intent = new Intent(this, HomeActivity.class);
             intent.putExtra(USER_EMAIL, emailText);
             intent.putExtra(USER_PASSWORD, passwordText);
 
-            final ProgressDialog dialog = ProgressDialog.show(this, "",
+            ProgressDialog dialog = ProgressDialog.show(this, "",
                     getString(R.string.toast_progress_dialog_loading), true, false);
             VolleyClient client = VolleyClient.getInstance(context);
-            client.login(emailText.toString(), passwordText, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse (JSONObject response) {
-                    Log.d("JSON success", response.toString());
-                    dialog.dismiss();
-                    String message = getString(R.string.toast_login_activity_login_successfully);
-                    Toast toast = Toast.makeText(context, message, duration);
-                    toast.show();
-                    setResult(RESULT_OK, intent);
-                    finish();
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse (VolleyError error) {
-                    Log.d("JSON Error", error.toString());
-                    dialog.dismiss();
-                    String message = getString(R.string.toast_login_activity_login_error);
-                    Toast toast = Toast.makeText(context, message, duration);
-                    toast.show();
-                }
-            });
+            client.login(emailText.toString(), passwordText, getSuccessListener(dialog, intent),
+                    getErrorListener(dialog));
         }
         else if (!validEmail){
             String message = getString(R.string.toast_login_activity_invalid_email);
@@ -119,6 +100,39 @@ public class LoginActivity extends Activity {
             Toast toast = Toast.makeText(context, message, duration);
             toast.show();
         }
+    }
+
+    private Response.ErrorListener getErrorListener (final ProgressDialog dialog) {
+        final Context context = getApplicationContext();
+        final int duration = Toast.LENGTH_SHORT;
+        return new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse (VolleyError error) {
+                Log.d("JSON Error", error.toString());
+                dialog.dismiss();
+                String message = getString(R.string.toast_login_activity_login_error);
+                Toast toast = Toast.makeText(context, message, duration);
+                toast.show();
+            }
+        };
+    }
+
+    private Response.Listener<JSONObject> getSuccessListener (final ProgressDialog dialog, final Intent intent) {
+        final Context context = getApplicationContext();
+        final int duration = Toast.LENGTH_SHORT;
+        /*TODO get all the movement saved in the web*/
+        return new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse (JSONObject response) {
+                Log.d("JSON success", response.toString());
+                dialog.dismiss();
+                String message = getString(R.string.toast_login_activity_login_successfully);
+                Toast toast = Toast.makeText(context, message, duration);
+                toast.show();
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        };
     }
 
     public void loginActivitySignIn (View view) {
