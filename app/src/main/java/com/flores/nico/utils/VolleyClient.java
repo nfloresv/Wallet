@@ -22,7 +22,7 @@ public class VolleyClient {
     // Volley
     private static VolleyClient volleyClient;
     // URLs
-    private final String BASE_URL = "data.magnet.cl/";
+    private final String BASE_URL = "https://data.magnet.cl/";
     private final String USER_URL = BASE_URL + "users/";
     private final String MOVEMENT_URL = BASE_URL + "transactions/";
     // Params Name

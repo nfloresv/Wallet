@@ -101,6 +101,7 @@ public class HomeActivity extends Activity {
             //Start user login
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, LOGIN_ACTIVITY_REQUEST_CODE);
+            finish();
         }
     }
 

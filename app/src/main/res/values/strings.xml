@@ -51,6 +51,10 @@
         updated</string>
     <string name="toast_debt_fragment_debt_saved">Debt saved</string>
     <string name="toast_debt_fragment_debt_error">Please provide an amount and receiver</string>
+    <string name="toast_sign_in_activity_sign_in_successfully">Sign in successfully</string>
+    <string name="toast_sign_in_activity_invalid_fields">Please fill all the fields</string>
+    <string name="toast_sign_in_activity_sign_in_error">There was a problem singing in</string>
+    <string name="toast_login_activity_login_error">There was a problem logging in</string>
 
     <!-- Views Text -->
     <string name="login_activity_bt_login">Log In</string>
@@ -75,5 +79,6 @@
     <string name="sign_in_activity_tv_first_name">First Name</string>
     <string name="sign_in_activity_tv_last_name">Last Name</string>
     <string name="sign_in_activity_btn_sign_in">Sign In</string>
+    <string name="toast_progress_dialog_loading">loading...</string>
 
 </resources>

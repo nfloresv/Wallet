@@ -1,14 +1,22 @@
 package com.flores.nico.wallet;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.flores.nico.utils.VolleyClient;
+
+import org.json.JSONObject;
 
 public class SignInActivity extends Activity {
     public static final String USER_FIRST_NAME = "com.flores.nico.wallet.FIRST_NAME";
@@ -43,8 +51,8 @@ public class SignInActivity extends Activity {
     }
 
     public void signInActivitySignIn (View view) {
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
+        final Context context = getApplicationContext();
+        final int duration = Toast.LENGTH_SHORT;
 
         EditText firstNameField = (EditText) findViewById(R.id.signInActivityInputFirstName);
         String firstNameText = firstNameField.getText().toString();
@@ -61,20 +69,39 @@ public class SignInActivity extends Activity {
         boolean validEmail = isEmailValid(emailText);
 
         if (validEmail && !passwordText.isEmpty() && !firstNameText.isEmpty() && !lastNameText.isEmpty()) {
-            String message = getString(R.string.toast_login_activity_login_successfully);
-            Toast toast = Toast.makeText(context, message, duration);
-            toast.show();
-
-            Intent intent = new Intent(this, LoginActivity.class);
+            final Intent intent = new Intent(this, LoginActivity.class);
             intent.putExtra(LoginActivity.USER_EMAIL, emailText);
             intent.putExtra(LoginActivity.USER_PASSWORD, passwordText);
             intent.putExtra(USER_FIRST_NAME, firstNameText);
             intent.putExtra(USER_LAST_NAME, lastNameText);
 
-            /* TODO use volley to register new user */
-            /*TODO show loading dialog*/
-            setResult(RESULT_OK, intent);
-            finish();
+            final ProgressDialog dialog = ProgressDialog.show(this, "",
+                    getString(R.string.toast_progress_dialog_loading), true, false);
+            VolleyClient client = VolleyClient.getInstance(context);
+            client.signIn(emailText.toString(), firstNameText, lastNameText, passwordText,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse (JSONObject response) {
+                            /*TODO look what is the server response*/
+                            Log.d("JSON Success", response.toString());
+                            dialog.dismiss();
+                            String message = getString(R.string.toast_sign_in_activity_sign_in_successfully);
+                            Toast toast = Toast.makeText(context, message, duration);
+                            toast.show();
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse (VolleyError error) {
+                            /*TODO look what is the server response*/
+                            Log.d("JSON Error", error.toString());
+                            dialog.dismiss();
+                            String message = getString(R.string.toast_sign_in_activity_sign_in_error);
+                            Toast toast = Toast.makeText(context, message, duration);
+                            toast.show();
+                        }
+                    });
         } else if (!validEmail) {
             String message = getString(R.string.toast_login_activity_invalid_email);
             Toast toast = Toast.makeText(context, message, duration);
@@ -84,7 +111,7 @@ public class SignInActivity extends Activity {
             Toast toast = Toast.makeText(context, message, duration);
             toast.show();
         } else {
-            String message = "Please fill all the fields";
+            String message = getString(R.string.toast_sign_in_activity_invalid_fields);
             Toast toast = Toast.makeText(context, message, duration);
             toast.show();
         }

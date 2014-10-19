@@ -1,14 +1,22 @@
 package com.flores.nico.wallet;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.flores.nico.utils.VolleyClient;
+
+import org.json.JSONObject;
 
 
 public class LoginActivity extends Activity {
@@ -60,8 +68,8 @@ public class LoginActivity extends Activity {
     }
 
     public void loginActivityLogin (View view) {
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
+        final Context context = getApplicationContext();
+        final int duration = Toast.LENGTH_SHORT;
 
         EditText emailField = (EditText) findViewById(R.id.loginActivityInputEmail);
         CharSequence emailText = emailField.getText().toString();
@@ -72,18 +80,34 @@ public class LoginActivity extends Activity {
         boolean validEmail = isEmailValid(emailText);
 
         if (validEmail && !passwordText.isEmpty()) {
-            String message = getString(R.string.toast_login_activity_login_successfully);
-            Toast toast = Toast.makeText(context, message, duration);
-            toast.show();
-
-            Intent intent = new Intent(this, HomeActivity.class);
+            final Intent intent = new Intent(this, HomeActivity.class);
             intent.putExtra(USER_EMAIL, emailText);
             intent.putExtra(USER_PASSWORD, passwordText);
 
-            /*TODO use volley to login*/
-            /*TODO show loading dialog*/
-            setResult(RESULT_OK, intent);
-            finish();
+            final ProgressDialog dialog = ProgressDialog.show(this, "",
+                    getString(R.string.toast_progress_dialog_loading), true, false);
+            VolleyClient client = VolleyClient.getInstance(context);
+            client.login(emailText.toString(), passwordText, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse (JSONObject response) {
+                    Log.d("JSON success", response.toString());
+                    dialog.dismiss();
+                    String message = getString(R.string.toast_login_activity_login_successfully);
+                    Toast toast = Toast.makeText(context, message, duration);
+                    toast.show();
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse (VolleyError error) {
+                    Log.d("JSON Error", error.toString());
+                    dialog.dismiss();
+                    String message = getString(R.string.toast_login_activity_login_error);
+                    Toast toast = Toast.makeText(context, message, duration);
+                    toast.show();
+                }
+            });
         }
         else if (!validEmail){
             String message = getString(R.string.toast_login_activity_invalid_email);
