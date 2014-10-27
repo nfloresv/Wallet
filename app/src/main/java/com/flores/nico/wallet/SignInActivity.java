@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,16 +15,25 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.flores.nico.utils.VolleyClient;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SignInActivity extends Activity {
     public static final String USER_FIRST_NAME = "com.flores.nico.wallet.FIRST_NAME";
     public static final String USER_LAST_NAME = "com.flores.nico.wallet.LAST_NAME";
+    public static final String USER_ID = "com.flores.nico.wallet.ID";
+    private Intent intent;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        dialog = new ProgressDialog(this);
+        dialog.setMessage(getString(R.string.toast_progress_dialog_loading));
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
     }
 
     @Override
@@ -69,17 +77,16 @@ public class SignInActivity extends Activity {
         boolean validEmail = isEmailValid(emailText);
 
         if (validEmail && !passwordText.isEmpty() && !firstNameText.isEmpty() && !lastNameText.isEmpty()) {
-            Intent intent = new Intent(this, LoginActivity.class);
+            intent = new Intent(this, LoginActivity.class);
             intent.putExtra(LoginActivity.USER_EMAIL, emailText);
             intent.putExtra(LoginActivity.USER_PASSWORD, passwordText);
             intent.putExtra(USER_FIRST_NAME, firstNameText);
             intent.putExtra(USER_LAST_NAME, lastNameText);
 
-            ProgressDialog dialog = ProgressDialog.show(this, "",
-                    getString(R.string.toast_progress_dialog_loading), true, false);
+            dialog.show();
             VolleyClient client = VolleyClient.getInstance(context);
             client.signIn(emailText.toString(), firstNameText, lastNameText, passwordText,
-                    getSuccessListener(intent, dialog), getErrorListener(dialog));
+                    getSuccessListener(), getErrorListener());
         } else if (!validEmail) {
             String message = getString(R.string.toast_login_activity_invalid_email);
             Toast toast = Toast.makeText(context, message, duration);
@@ -95,14 +102,12 @@ public class SignInActivity extends Activity {
         }
     }
 
-    private Response.ErrorListener getErrorListener (final ProgressDialog dialog) {
+    private Response.ErrorListener getErrorListener () {
         final Context context = getApplicationContext();
         final int duration = Toast.LENGTH_SHORT;
         return new Response.ErrorListener() {
             @Override
             public void onErrorResponse (VolleyError error) {
-                /*TODO look what is the server response*/
-                Log.d("JSON Error", error.toString());
                 dialog.dismiss();
                 String message = getString(R.string.toast_sign_in_activity_sign_in_error);
                 Toast toast = Toast.makeText(context, message, duration);
@@ -111,19 +116,25 @@ public class SignInActivity extends Activity {
         };
     }
 
-    private Response.Listener<JSONObject> getSuccessListener (final Intent intent, final ProgressDialog dialog) {
+    private Response.Listener<JSONObject> getSuccessListener () {
         final Context context = getApplicationContext();
         final int duration = Toast.LENGTH_SHORT;
         return new Response.Listener<JSONObject>() {
             @Override
             public void onResponse (JSONObject response) {
-                /*TODO look what is the server response*/
-                Log.d("JSON Success", response.toString());
-                dialog.dismiss();
                 String message = getString(R.string.toast_sign_in_activity_sign_in_successfully);
+                int id;
+                try {
+                    id = response.getInt("id");
+                    intent.putExtra(USER_ID, id);
+                    setResult(RESULT_OK, intent);
+                } catch (JSONException e) {
+                    message = getString(R.string.toast_sign_in_activity_sign_in_error);
+                    setResult(RESULT_CANCELED, intent);
+                }
+                dialog.dismiss();
                 Toast toast = Toast.makeText(context, message, duration);
                 toast.show();
-                setResult(RESULT_OK, intent);
                 finish();
             }
         };

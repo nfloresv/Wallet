@@ -23,11 +23,18 @@ public class LoginActivity extends Activity {
     public static final String USER_EMAIL = "com.flores.nico.wallet.EMAIL";
     public static final String USER_PASSWORD = "com.flores.nico.wallet.PASSWORD";
     public static final int SIGN_IN_ACTIVITY_REQUEST_CODE = 0x02;
+    private Intent intent;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        dialog = new ProgressDialog(this);
+        dialog.setMessage(getString(R.string.toast_progress_dialog_loading));
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
     }
 
     @Override
@@ -67,42 +74,7 @@ public class LoginActivity extends Activity {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-    public void loginActivityLogin (View view) {
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-
-        EditText emailField = (EditText) findViewById(R.id.loginActivityInputEmail);
-        CharSequence emailText = emailField.getText().toString();
-
-        EditText passwordField = (EditText) findViewById(R.id.loginActivityInputPassword);
-        String passwordText = passwordField.getText().toString();
-
-        boolean validEmail = isEmailValid(emailText);
-
-        if (validEmail && !passwordText.isEmpty()) {
-            Intent intent = new Intent(this, HomeActivity.class);
-            intent.putExtra(USER_EMAIL, emailText);
-            intent.putExtra(USER_PASSWORD, passwordText);
-
-            ProgressDialog dialog = ProgressDialog.show(this, "",
-                    getString(R.string.toast_progress_dialog_loading), true, false);
-            VolleyClient client = VolleyClient.getInstance(context);
-            client.login(emailText.toString(), passwordText, getSuccessListener(dialog, intent),
-                    getErrorListener(dialog));
-        }
-        else if (!validEmail){
-            String message = getString(R.string.toast_login_activity_invalid_email);
-            Toast toast = Toast.makeText(context, message, duration);
-            toast.show();
-        }
-        else {
-            String message = getString(R.string.toast_login_activity_invalid_password);
-            Toast toast = Toast.makeText(context, message, duration);
-            toast.show();
-        }
-    }
-
-    private Response.ErrorListener getErrorListener (final ProgressDialog dialog) {
+    private Response.ErrorListener getErrorListener () {
         final Context context = getApplicationContext();
         final int duration = Toast.LENGTH_SHORT;
         return new Response.ErrorListener() {
@@ -117,10 +89,9 @@ public class LoginActivity extends Activity {
         };
     }
 
-    private Response.Listener<JSONObject> getSuccessListener (final ProgressDialog dialog, final Intent intent) {
+    private Response.Listener<JSONObject> getSuccessListener () {
         final Context context = getApplicationContext();
         final int duration = Toast.LENGTH_SHORT;
-        /*TODO get all the movement saved in the web*/
         return new Response.Listener<JSONObject>() {
             @Override
             public void onResponse (JSONObject response) {
@@ -133,6 +104,38 @@ public class LoginActivity extends Activity {
                 finish();
             }
         };
+    }
+
+    public void loginActivityLogin (View view) {
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_SHORT;
+
+        EditText emailField = (EditText) findViewById(R.id.loginActivityInputEmail);
+        CharSequence emailText = emailField.getText().toString();
+
+        EditText passwordField = (EditText) findViewById(R.id.loginActivityInputPassword);
+        String passwordText = passwordField.getText().toString();
+
+        boolean validEmail = isEmailValid(emailText);
+
+        if (validEmail && !passwordText.isEmpty()) {
+            intent = new Intent(this, HomeActivity.class);
+            intent.putExtra(USER_EMAIL, emailText);
+            intent.putExtra(USER_PASSWORD, passwordText);
+
+            dialog.show();
+            VolleyClient client = VolleyClient.getInstance(context);
+            client.login(emailText.toString(), passwordText, getSuccessListener(),
+                    getErrorListener());
+        } else if (!validEmail) {
+            String message = getString(R.string.toast_login_activity_invalid_email);
+            Toast toast = Toast.makeText(context, message, duration);
+            toast.show();
+        } else {
+            String message = getString(R.string.toast_login_activity_invalid_password);
+            Toast toast = Toast.makeText(context, message, duration);
+            toast.show();
+        }
     }
 
     public void loginActivitySignIn (View view) {

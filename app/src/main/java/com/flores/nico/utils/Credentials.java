@@ -19,12 +19,13 @@ public class Credentials {
     }
 
     public boolean setLoginData (String user_email, String user_password, String first_name,
-                                 String last_name) {
+                                 String last_name, int id) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(context.getString(R.string.code_user_email), user_email);
         editor.putString(context.getString(R.string.code_user_password), user_password);
         editor.putString(context.getString(R.string.code_user_first_name), first_name);
         editor.putString(context.getString(R.string.code_user_last_name), last_name);
+        editor.putInt(context.getString(R.string.code_user_id), id);
         return editor.commit();
     }
 

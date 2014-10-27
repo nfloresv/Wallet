@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.flores.nico.database.Movement;
 import com.flores.nico.utils.Credentials;
 import com.flores.nico.utils.Initializer;
 
@@ -49,6 +50,8 @@ public class HomeActivity extends Activity {
             tmp[0] = user_email;
             System.arraycopy(sectionsList, 0, tmp, 1, sectionsList.length);
             sectionsList = tmp;
+
+            Movement.syncMovements(getApplicationContext());
         }
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
@@ -101,7 +104,6 @@ public class HomeActivity extends Activity {
             //Start user login
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, LOGIN_ACTIVITY_REQUEST_CODE);
-            finish();
         }
     }
 
@@ -127,7 +129,6 @@ public class HomeActivity extends Activity {
             boolean result = credentials.setLogout();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, LOGIN_ACTIVITY_REQUEST_CODE);
-            finish();
             return result;
         }
         return super.onOptionsItemSelected(item);
@@ -142,6 +143,7 @@ public class HomeActivity extends Activity {
                 String passwordText = data.getStringExtra(LoginActivity.USER_PASSWORD);
                 String firstNameText = data.getStringExtra(SignInActivity.USER_FIRST_NAME);
                 String lastNameText = data.getStringExtra(SignInActivity.USER_LAST_NAME);
+                int id = data.getIntExtra(SignInActivity.USER_ID, 0);
 
                 String[] sectionsList = getResources().getStringArray(R.array.drawer_section_array);
                 String[] tmp = new String[sectionsList.length + 1];
@@ -151,7 +153,10 @@ public class HomeActivity extends Activity {
                 mDrawerList.setAdapter(new ArrayAdapter<String>(this,
                         android.R.layout.simple_list_item_1, tmp));
 
-                credentials.setLoginData(emailText, passwordText, firstNameText, lastNameText);
+                credentials.setLoginData(emailText, passwordText, firstNameText, lastNameText, id);
+            } else {
+                /*If the user cancel the action, finish the application*/
+                finish();
             }
         }
     }

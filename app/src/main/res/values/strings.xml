@@ -31,6 +31,7 @@
     <string name="code_user_password">com.flores.nico.wallet.USER_PASSWORD</string>
     <string name="code_user_first_name">com.flores.nico.wallet.USER_FIRST_NAME</string>
     <string name="code_user_last_name">com.flores.nico.wallet.USER_FIRST_NAME</string>
+    <string name="code_user_id">com.flores.nico.wallet.USER_ID</string>
     <string name="code_no_user_signed_in">com.flores.nico.wallet.NO_USER</string>
     <string name="code_no_categories_present">com.flores.nico.utils.NO_CATEGORIES</string>
     <string name="code_categories_present">com.flores.nico.utils.CATEGORIES</string>
@@ -55,6 +56,7 @@
     <string name="toast_sign_in_activity_invalid_fields">Please fill all the fields</string>
     <string name="toast_sign_in_activity_sign_in_error">There was a problem singing in</string>
     <string name="toast_login_activity_login_error">There was a problem logging in</string>
+    <string name="toast_progress_dialog_loading">loading…</string>
 
     <!-- Views Text -->
     <string name="login_activity_bt_login">Log In</string>
@@ -79,6 +81,5 @@
     <string name="sign_in_activity_tv_first_name">First Name</string>
     <string name="sign_in_activity_tv_last_name">Last Name</string>
     <string name="sign_in_activity_btn_sign_in">Sign In</string>
-    <string name="toast_progress_dialog_loading">loading...</string>
 
 </resources>
